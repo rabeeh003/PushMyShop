@@ -1,0 +1,116 @@
+[
+  {
+    "id": 1,
+    "name": "Veg Burger",
+    "price": {
+      "offer": 4.99,
+      "regular": 5.99
+    },
+    "isVegetarian": true,
+    "isBestSeller": true,
+    "isSpecial": false,
+    "rating": {
+      "count": 120,
+      "average": 4.5
+    },
+    "image": "https://via.placeholder.com/150",
+    "description": "A delicious vegetarian burger made with fresh ingredients.",
+    "category": "Food",
+    "subcategory": "Burger"
+  },
+  {
+    "id": 2,
+    "name": "Chicken Sandwich",
+    "price": {
+      "offer": 6.99,
+      "regular": 7.99
+    },
+    "isVegetarian": false,
+    "isBestSeller": false,
+    "isSpecial": true,
+    "rating": {
+      "count": 50,
+      "average": 4.0
+    },
+    "image": "https://via.placeholder.com/150",
+    "description": "A tasty chicken sandwich with crispy chicken fillet.",
+    "category": "Food",
+    "subcategory": "Sandwich"
+  },
+  {
+    "id": 3,
+    "name": "Veg Pizza",
+    "price": {
+      "offer": 7.99,
+      "regular": 9.99
+    },
+    "isVegetarian": true,
+    "isBestSeller": false,
+    "isSpecial": false,
+    "rating": {
+      "count": 200,
+      "average": 4.8
+    },
+    "image": "https://via.placeholder.com/150",
+    "description": "A freshly baked pizza with a variety of vegetables.",
+    "category": "Food",
+    "subcategory": "Pizza"
+  },
+  {
+    "id": 4,
+    "name": "Beef Burger",
+    "price": {
+      "offer": 5.49,
+      "regular": 6.49
+    },
+    "isVegetarian": false,
+    "isBestSeller": true,
+    "isSpecial": true,
+    "rating": {
+      "count": 75,
+      "average": 4.3
+    },
+    "image": "https://via.placeholder.com/150",
+    "description": "A delicious beef burger with lettuce, tomato, and cheese.",
+    "category": "Food",
+    "subcategory": "Burger"
+  },
+  {
+    "id": 5,
+    "name": "Vegan Salad",
+    "price": {
+      "offer": 6.99,
+      "regular": 7.99
+    },
+    "isVegetarian": true,
+    "isBestSeller": false,
+    "isSpecial": false,
+    "rating": {
+      "count": 30,
+      "average": 4.1
+    },
+    "image": "https://via.placeholder.com/150",
+    "description": "A healthy vegan salad with fresh greens and vegetables.",
+    "category": "Food",
+    "subcategory": "Salad"
+  },
+  {
+    "id": 6,
+    "name": "Seafood Pasta",
+    "price": {
+      "offer": 10.99,
+      "regular": 12.99
+    },
+    "isVegetarian": false,
+    "isBestSeller": false,
+    "isSpecial": true,
+    "rating": {
+      "count": 90,
+      "average": 4.6
+    },
+    "image": "https://via.placeholder.com/150",
+    "description": "A rich pasta dish with fresh seafood and garlic sauce.",
+    "category": "Food",
+    "subcategory": "Pasta"
+  }
+]
