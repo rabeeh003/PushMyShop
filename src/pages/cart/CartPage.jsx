@@ -115,7 +115,7 @@ function CartPage() {
                             </div>
                             <div className="flex justify-between items-center mt-2 border-t border-gray-400 pt-2">
                                 <span className="font-semibold text-sm">Total</span>
-                                <span className="text-sm font-bold">${totalPrice + (totalPrice >= 30 ? 0 : 5  )}</span>
+                                <span className="text-sm font-bold">${(totalPrice + (totalPrice >= 30 ? 0 : 5  )).toFixed(2)}</span>
                             </div>
                         </div>
                         {/* Delivery Address */}

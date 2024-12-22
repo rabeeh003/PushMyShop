@@ -2,10 +2,11 @@ import { LandPlotIcon, Locate, MapPin, Search, SearchIcon, Star, Timer } from 'l
 import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import InstallPWA from './InstallPWA';
 
 function BannerComponent() {
   return (
-    <div className="w-full mb-4">
+    <div className="w-full mb-4 ">
       {/* Banner Image */}
       <div className="-z-30 relative">
         <img
@@ -13,6 +14,7 @@ function BannerComponent() {
           alt="Starbucks Coffee"
           className="w-full h-52 object-cover filter brightness-90"
         />
+        <InstallPWA />
         {/* search Icon */}
         <div className="absolute top-2 right-2">
           <button className="p-1 bg-white rounded-full shadow-md hover:bg-gray-100">

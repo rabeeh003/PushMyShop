@@ -25,7 +25,6 @@ function HomePage() {
 
   return (
     <div className="w-full">
-      <InstallPWA/>
       <BannerComponent />
       <div className="overflow-x-auto px-2 sticky top-0 bg-white/60 dark:bg-inherit backdrop-blur-md pt-3 z-50">
         <MenuFilters onFilterChange={handleFilterChange} />
