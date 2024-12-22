@@ -43,10 +43,10 @@ function InstallPWA() {
                             className="w-12 h-12 border-2 border-white rounded-full"
                         />
                         <div className="flex gap-2">
-                            <button className="btn btn-outline-warning" onClick={() => handleInstallLater}>
+                            <button className="btn btn-outline-warning" onClick={() => handleInstallLater()}>
                                 Later
                             </button>
-                            <button className="btn btn-outline-warning border-white text-white " onClick={() => handleInstall}>
+                            <button className="btn btn-outline-warning border-white text-white " onClick={() => handleInstall()}>
                                 Install
                             </button>
                         </div>
