@@ -3,37 +3,41 @@ import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import InstallPWA from './InstallPWA';
+import { useSelector } from 'react-redux';
+import { selectShopData } from '../../../store/appSlice';
 
 function BannerComponent() {
+  const shopData = useSelector(selectShopData);
   return (
     <div className="w-full mb-4 ">
       {/* Banner Image */}
       <div className="-z-30 relative">
         <img
-          src="https://tb-static.uber.com/prod/image-proc/processed_images/5aeed5fbf2c1503442afc8912381ace2/7835428b286acb57646a256c897c0e9e.jpeg"
+          src="https://cdn.oliverbonacininetwork.com/uploads/sites/42/2021/01/OB-Bayview-LocalLicious-2000x1333-1.jpg"
           alt="Starbucks Coffee"
           className="w-full h-52 object-cover filter brightness-90"
         />
         {/* search Icon */}
-        <div className="absolute top-2 right-2">
+        {/* <div className="absolute top-2 right-2">
           <button className="p-1 bg-white rounded-full shadow-md hover:bg-gray-100">
             <SearchIcon className="w-5 h-5 text-gray-500" />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Content */}
-      <div className="p-4 w-[85%] mx-auto -mt-16 z-50 bg-white mb-3 rounded-lg shadow-md ">
+      <div className="py-2 px-4 w-[85%] mx-auto -mt-16 z-50 bg-white mb-3 rounded-lg shadow-md ">
         {/* Header */}
         <div className="flex items-center">
           <img
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
+           src="/icon-512.png"
+            // src={"https://lewoffy.infineur.com/" + shopData?.image}
             alt="Logo"
-            className="w-10 h-10 rounded-full mr-3"
+            className="w-16 h-15 rounded-full mr-3"
           />
           <div>
-            <h3 className="text-lg text-gray-800  font-semibold">Starbucks</h3>
-            <p className="text-gray-500 text-sm">Coffee</p>
+            <h3 className="text-lg text-gray-800  font-semibold">Lewoffy</h3>
+            <p className="text-gray-500 text-sm">{shopData?.address}</p>
           </div>
         </div>
 

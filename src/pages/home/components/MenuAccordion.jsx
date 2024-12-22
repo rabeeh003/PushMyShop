@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 export const MenuAccordion = ({ category, items }) => {
   const [isOpen, setIsOpen] = useState(true);
+  
 
   if (!items || items.length === 0) {
     return null; // or render a message indicating no items for this category

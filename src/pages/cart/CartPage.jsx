@@ -10,11 +10,13 @@ import {
     removeFromCart,
     selectTotalPrice,
 } from '../../store/cartSlice';
+import { selectShopData } from '../../store/appSlice';
 
 function CartPage() {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
     const totalPrice = useSelector(selectTotalPrice);
+    const shopData = useSelector(selectShopData);
 
     const handleIncreaseQuantity = (id) => {
         dispatch(increaseQuantity(id));
@@ -49,7 +51,7 @@ function CartPage() {
                                     <div key={item.id} className="cart-item py-2 border-b">
                                         <div className="flex items-center">
                                             <img
-                                                src={item.image && item.image.length > 0 ? "https://app.mojarestaurant.com/"+item.image : "/placeholder.png"}
+                                                src={item.image && item.image.length > 0 ? "https://lewoffy.infineur.com/"+item.image : "/placeholder.png"}
                                                 alt={item.name}
                                                 className="w-24 h-24 rounded-lg object-cover"
                                             />
@@ -86,7 +88,7 @@ function CartPage() {
                                                         }`}
                                                 />
                                                 <span className="text-sm font-semibold">
-                                                    ${(item.price * item.quantity).toFixed(2)}
+                                                    AED {(item.price * item.quantity).toFixed(2)}
                                                 </span>
                                             </div>
                                         </div>
@@ -100,22 +102,22 @@ function CartPage() {
                         <div className="relative p-4 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-sm my-3">
                             <div className="flex justify-between items-center mt-2">
                                 <span className="text-sm font-semibold">Subtotal</span>
-                                <span className="text-sm">${totalPrice.toFixed(2)}</span>
+                                <span className="text-sm">AED {totalPrice.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between items-center mt-2">
                                 <div className="flex flex-col items-start">
                                     <span className="font-semibold text-sm">Delivery Charge</span>
                                     <span className="text-[10px] md:text-xs font-extralight">
-                                        Save $5 on Delivery fee by ordering above $30
+                                        Save {shopData?.delivery_charges} on Delivery fee by ordering above $30
                                     </span>
                                 </div>
                                 <span className="text-warning text-sm">
-                                    {totalPrice >= 30 ? 'Free' : '$5.00'}
+                                    {totalPrice >= 30 ? 'Free' : `AED ${shopData?.delivery_charges}`}
                                 </span>
                             </div>
                             <div className="flex justify-between items-center mt-2 border-t border-gray-400 pt-2">
                                 <span className="font-semibold text-sm">Total</span>
-                                <span className="text-sm font-bold">${(totalPrice + (totalPrice >= 30 ? 0 : 5  )).toFixed(2)}</span>
+                                <span className="text-sm font-bold">AED {(totalPrice + (totalPrice >= 30 ? 0 : 5  )).toFixed(2)}</span>
                             </div>
                         </div>
                         {/* Delivery Address */}

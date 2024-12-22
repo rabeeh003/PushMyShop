@@ -4,10 +4,10 @@ import { MenuFilters } from './components/FilterComponent';
 import { MenuAccordion } from './components/MenuAccordion';
 import BannerComponent from './components/BannerComponent';
 import CartComponent from './components/CartComponent';
-import dummyProducts from './components/dummyProducts.json';
 import InstallPWA from './components/InstallPWA';
 import { selectFilteredProducts, setProductsList } from '../../store/menuSlice';
 import axios from 'axios';
+import { setShopData } from '../../store/appSlice';
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -15,13 +15,21 @@ function HomePage() {
   const filteredProducts = useSelector(selectFilteredProducts);
 
   useEffect(() => {
-    axios.post('https://app.mojarestaurant.com/public/api/get-restaurant-items/our-menu').then(response => {
+    // shop data
+    axios.post('https://lewoffy.infineur.com/public/api/get-restaurant-info/our-menu').then(response => {
+      console.log(response.data);
+      dispatch(setShopData(response.data));
+    }).catch(error => {
+      console.error(error);
+    });
+    
+    // menu data
+    axios.post('https://lewoffy.infineur.com/public/api/get-restaurant-items/our-menu').then(response => {
       console.log(response.data);
       dispatch(setProductsList(response.data));
     }).catch(error => {
       console.error(error);
     });
-    // dispatch(setProductsList(dummyProducts)); // Dispatch the products list to Redux
   }, [dispatch]);
 
   return (

@@ -9,9 +9,8 @@ const Marker = ({ lat, lng }) => (
   </div>
 );
 
-function MapComponent() {
-  const defaultLocation = { lat: 25.2048, lng: 55.2708 }; // Default position (UAE: Dubai)
-  const [position, setPosition] = useState(defaultLocation); // Current position
+function MapComponent({ position, setPosition, defaultLocation }) {
+   // Current position
   const [zoom, setZoom] = useState(11); // Default zoom level
 
   const handleMapClick = ({ lat, lng }) => {

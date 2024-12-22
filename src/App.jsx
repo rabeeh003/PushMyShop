@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import CartPage from "./pages/cart/CartPage";
 import LocationPage from "./pages/location/LocationPage";
+import OTPPage from "./pages/auth/OtpPage";
 
 function App() {
   if ('serviceWorker' in navigator) {
@@ -19,6 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/auth" element={<OTPPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/location" element={<LocationPage />} />
         </Routes>
