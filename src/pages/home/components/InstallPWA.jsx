@@ -28,10 +28,11 @@ function InstallPWA() {
     };
 
     return (
-        <div>
+        <div className='fixed flex justify-between items-center top-2 z-50 w-[98vw] mx-auto bg-warning/60 outline-yellow-500 backdrop-blur-md p-2 rounded-lg'>
+            <image src="/icon-192.png" alt="Logo" className="w-10 h-10 rounded-full" />
             {prompt && (
-                <button className="btn btn-primary" onClick={handleInstall}>
-                    Install App
+                <button className="btn btn-warning btn-outline-warning" onClick={handleInstall}>
+                    Install
                 </button>
             )}
         </div>

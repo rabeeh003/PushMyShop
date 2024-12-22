@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MapComponent from './components/MapComponent';
 
 function LocationPage() {
     const [selectedOption, setSelectedOption] = useState('');
     const [availableMethods, setAvailableMethods] = useState([]);
+    const paymentSectionRef = useRef(null); // Reference to the payment section
 
     const paymentMethods = [
         { id: 'paypal', name: 'Pay Pal', icon: 'https://static.vecteezy.com/system/resources/previews/044/625/954/non_2x/paypal-logotype-on-white-background-paypal-logo-debit-electronic-payment-system-financial-management-electronic-wallet-nfc-banking-app-bank-application-editorial-free-vector.jpg' },
@@ -56,21 +57,32 @@ function LocationPage() {
         }
     };
 
+    const scrollToPaymentSection = () => {
+        paymentSectionRef.current?.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to payment section
+    };
+
     return (
-        <div className='relative'>
-            <div className='sticky top-0 left-0 w-full z-10'>
+        <div className="relative">
+            <div className="sticky top-0 left-0 w-full z-10">
                 <MapComponent />
             </div>
-            <section className="sticky mt-5 bg-black text-center p-3 rounded-xl text-white z-50  min-h-svh">
-                <p className='text-sm text-white pb-2'>Select your location for delivery</p>
-                <button className='btn btn-warning w-[85%]'>Select Location</button>
-                <div className='flex flex-col gap-2 mt-3'>
-                    <span className='text-md text-start pb-1 pt-3 '>Place and Address</span>
-                    <textarea className="textarea min-w-full" placeholder="Enter your place and address for delivery" />
-                </div>
-
-                {/* Payment Methods */}
-                <div className="mt-5">
+            <div ref={paymentSectionRef} >
+                <section className="sticky mt-5 bg-black text-center p-3 rounded-xl text-white z-50 ">
+                    <p className="text-sm text-white pb-2">Select your location for delivery</p>
+                    <button
+                        className="btn btn-warning w-[85%]"
+                        onClick={scrollToPaymentSection} // Scroll to payment section on click
+                    >
+                        Select Location
+                    </button>
+                    <div className="flex flex-col gap-2 mt-3">
+                        <span className="text-md text-start pb-1 pt-3">Place and Address</span>
+                        <textarea
+                            className="textarea min-w-full"
+                            placeholder="Enter your place and address for delivery"
+                        />
+                    </div>
+                
                     <h2 className="text-xl text-start font-semibold my-4">Payment</h2>
                     <div className="space-y-4">
                         {paymentMethods.map((method) => (
@@ -79,7 +91,11 @@ function LocationPage() {
                                 className={`flex items-center p-4 border rounded-xl cursor-pointer ${selectedOption === method.id ? 'border-warning' : 'border-gray-600'}`}
                                 onClick={() => setSelectedOption(method.id)}
                             >
-                                <img src={method.icon} alt={method.name} className="w-12 h-12 rounded-xl mr-4 bg-white p-1 " />
+                                <img
+                                    src={method.icon}
+                                    alt={method.name}
+                                    className="w-12 h-12 rounded-xl mr-4 bg-white p-1"
+                                />
                                 <span className="text-lg font-medium">{method.name}</span>
                                 <input
                                     type="radio"
@@ -92,14 +108,17 @@ function LocationPage() {
                             </div>
                         ))}
                     </div>
-                    <button 
-                        className='btn btn-warning w-full mt-5'
+                    <button
+                        className="btn btn-warning w-full mt-5"
                         onClick={() => redirectToApp(selectedOption)}
                     >
-                        Pay with {selectedOption ? paymentMethods.find(m => m.id === selectedOption).name : 'Selected Method'}
+                        Pay with{' '}
+                        {selectedOption
+                            ? paymentMethods.find((m) => m.id === selectedOption).name
+                            : 'Selected Method'}
                     </button>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     );
 }

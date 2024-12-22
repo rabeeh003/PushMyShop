@@ -75,14 +75,14 @@ function BannerComponent() {
             <SwiperSlide>
               <div className="relative flex items-center gap-1 sm:gap-4 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 sm:p-4 shadow-md">
                 {/* Circular decorations */}
-                <div className="absolute top-0 left-[10%] w-4 h-4 bg-white rounded-full -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-white rounded-full translate-y-1/2"></div>
+                <div className="absolute top-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full translate-y-1/2"></div>
 
                 {/* Icon */}
                 <div className="offer-icon">
                   <img
                     className="w-10 h-10"
-                    src="/src/assets/cuopen.png"
+                    src="/cuopen.png"
                     alt="offer"
                   />
                 </div>
@@ -103,14 +103,14 @@ function BannerComponent() {
             <SwiperSlide>
               <div className="relative flex items-center gap-1 md:gap-4 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 md:p-4 shadow-md">
                 {/* Circular decorations */}
-                <div className="absolute top-0 left-[10%] w-4 h-4 bg-white rounded-full -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-white rounded-full translate-y-1/2"></div>
+                <div className="absolute top-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full translate-y-1/2"></div>
 
                 {/* Icon */}
                 <div className="offer-icon">
                   <img
                     className="w-10 h-10"
-                    src="/src/assets/cuopen.png"
+                    src="/cuopen.png"
                     alt="offer"
                   />
                 </div>
@@ -131,14 +131,14 @@ function BannerComponent() {
             <SwiperSlide>
               <div className="relative flex items-center gap-1 md:gap-4 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 md:p-4 shadow-md">
                 {/* Circular decorations */}
-                <div className="absolute top-0 left-[10%] w-4 h-4 bg-white rounded-full -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-white rounded-full translate-y-1/2"></div>
+                <div className="absolute top-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full translate-y-1/2"></div>
 
                 {/* Icon */}
                 <div className="offer-icon">
                   <img
                     className="w-10 h-10"
-                    src="/src/assets/cuopen.png"
+                    src="/cuopen.png"
                     alt="offer"
                   />
                 </div>

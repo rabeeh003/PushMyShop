@@ -30,7 +30,7 @@ function HomePage() {
       <div className="overflow-x-auto px-2 sticky top-0 bg-white/60 dark:bg-inherit backdrop-blur-md pt-3 z-50">
         <MenuFilters onFilterChange={handleFilterChange} />
       </div>
-      <div className="max-w-[95vw] px-2">
+      <div className="max-w-[95vw] px-2 mx-auto mb-20">
         {filteredCategoriyProductList.map((category) => (
           <div key={category.categoryName}>
             <h2 className="text-2xl font-bold mb-4">{category.categoryName}</h2>

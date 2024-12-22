@@ -9,7 +9,7 @@ export const MenuItem = ({ item }) => {
   };
 
   return (
-    <div className="flex justify-between items-start p-4 border-b">
+    <div className="flex justify-between items-start p-4 border-b dark:border-gray-700">
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-2">
           <span className={`w-2 h-2 rounded-full ${item.isVegetarian ? 'bg-green-500' : 'bg-red-500'}`} />
