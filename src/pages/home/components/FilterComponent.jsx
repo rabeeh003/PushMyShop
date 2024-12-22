@@ -1,33 +1,44 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilteredProducts, setSelectedFilter } from '../../../store/menuSlice';
+import { selectCategories, setCategoryFilter, setPrimaryFilter } from '../../../store/menuSlice';
+// import { setPrimaryFilter, setCategoryFilter, selectCategories } from '../../../store/menuSlice';
 
-
-export const MenuFilters = ({onFilterChange}) => {
+export const MenuFilters = () => {
   const dispatch = useDispatch();
-  const selectedFilter = useSelector((state) => state.menu.selectedFilter);
+  const categories = useSelector(selectCategories);
 
-  const handleFilterChange = (filter) => {
-    dispatch(setSelectedFilter(filter)); // Update the selected filter in Redux
-    dispatch(setFilteredProducts()); // Reapply the filtering logic based on selected filter
+  const handlePrimaryFilterChange = (filter) => {
+    dispatch(setPrimaryFilter(filter)); // Update the primary filter (All, Veg, Non-Veg)
+  };
+
+  const handleCategoryFilterChange = (category) => {
+    dispatch(setCategoryFilter(category)); // Update the secondary filter (category)
   };
 
   return (
-    <div className="flex gap-2 mb-4">
-      {[
-        { label: 'All', value: '' },
-        { label: 'Veg', value: 'veg' },
-        { label: 'Non-Veg', value: 'nonVeg' },
-        { label: 'Best Seller', value: 'bestSeller' },
-        { label: 'Special', value: 'special' }
-      ].map((filter) => (
+    <div className="flex flex-wrap gap-2">
+      {/* Primary Filters */}
+      {['All', 'Veg', 'Non-Veg'].map(filter => (
         <button
-          key={filter.value}
-          className={`btn btn-sm ${selectedFilter === filter.value ? 'btn-warning' : 'btn-outline'} whitespace-nowrap`}
-          onClick={() => handleFilterChange(filter.value)}
+          key={filter}
+          className="btn btn-sm"
+          onClick={() => handlePrimaryFilterChange(filter.toLowerCase())}
         >
-          {filter.label}
+          {filter}
         </button>
       ))}
+
+      {/* Category Dropdown */}
+      <select
+        className="btn btn-sm"
+        onChange={(e) => handleCategoryFilterChange(e.target.value)}
+      >
+        <option value="">All Categories</option>
+        {categories.map(category => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

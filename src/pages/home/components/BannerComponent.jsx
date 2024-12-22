@@ -14,7 +14,6 @@ function BannerComponent() {
           alt="Starbucks Coffee"
           className="w-full h-52 object-cover filter brightness-90"
         />
-        <InstallPWA />
         {/* search Icon */}
         <div className="absolute top-2 right-2">
           <button className="p-1 bg-white rounded-full shadow-md hover:bg-gray-100">

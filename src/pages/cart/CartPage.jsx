@@ -49,13 +49,13 @@ function CartPage() {
                                     <div key={item.id} className="cart-item py-2 border-b">
                                         <div className="flex items-center">
                                             <img
-                                                src={item.image}
+                                                src={item.image && item.image.length > 0 ? "https://app.mojarestaurant.com/"+item.image : "/placeholder.png"}
                                                 alt={item.name}
                                                 className="w-24 h-24 rounded-lg object-cover"
                                             />
                                             <div className="ml-4 flex-1">
                                                 <h3 className="font-bold">{item.name}</h3>
-                                                <p className="text-sm text-gray-600">{item.subcategory}</p>
+                                                <p className="text-sm text-gray-600">{item.category_name}</p>
                                                 <div className="flex items-center mt-2">
                                                     {/* Quantity Controls */}
                                                     <button
@@ -65,7 +65,7 @@ function CartPage() {
                                                         {item.quantity === 1 ? (
                                                             <Trash2 className="w-4 h-4 text-red-600" />
                                                         ) : (
-                                                            <Minus className="w-4 h-4" />
+                                                            <Minus className="w-4 h-4 text-gray-500" />
                                                         )}
                                                     </button>
                                                     <span className="px-4 font-semibold">{item.quantity}</span>
@@ -76,17 +76,17 @@ function CartPage() {
                                                         className="p-1 border rounded-lg bg-gray-200 hover:bg-gray-300"
                                                         disabled={item.quantity >= 10}
                                                     >
-                                                        <Plus className="w-4 h-4" />
+                                                        <Plus className="w-4 h-4 text-gray-500" />
                                                     </button>
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-10 items-end mt-2">
                                                 <span
-                                                    className={`w-2 h-2 rounded-full ${item.isVegetarian ? 'bg-green-500' : 'bg-red-500'
+                                                    className={`w-2 h-2 rounded-full ${item.is_veg ? 'bg-green-500' : 'bg-red-500'
                                                         }`}
                                                 />
                                                 <span className="text-sm font-semibold">
-                                                    ${(item.price.offer * item.quantity).toFixed(2)}
+                                                    ${(item.price * item.quantity).toFixed(2)}
                                                 </span>
                                             </div>
                                         </div>

@@ -6,15 +6,23 @@ import CartPage from "./pages/cart/CartPage";
 import LocationPage from "./pages/location/LocationPage";
 
 function App() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch((registrationError) => {
+        console.log('SW registration failed:', registrationError);
+      });
+    });
+  }
+
   return (
     <div className="sm:max-w-[560px] mx-auto">
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/location" element={<LocationPage />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/location" element={<LocationPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

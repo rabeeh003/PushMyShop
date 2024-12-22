@@ -23,6 +23,7 @@ export const MenuAccordion = ({ category, items }) => {
         <div className="border-t dark:border-gray-600">
           {items.map((item) => (
             <MenuItem key={item.id} item={item} />
+            // <p>hello</p>
           ))}
         </div>
       )}

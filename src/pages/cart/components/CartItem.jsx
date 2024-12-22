@@ -24,7 +24,7 @@ export const CartItem = ({ item }) => {
       </div>
       <div className="ml-4 flex flex-col items-center">
         <img
-          src={item.image}
+          src={item.image && item.image.length > 0 ? "https://app.mojarestaurant.com/"+item.image : "/placeholder.png"}
           alt={item.name}
           className="w-24 h-24 rounded-lg object-cover mt-5"
         />

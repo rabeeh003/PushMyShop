@@ -35,20 +35,16 @@ function InstallPWA() {
     return (
         <>
             {prompt && (
-                <div className="absolute w-full top-2 z-50 sm:max-w-[560px] ">
-                    <div className="flex justify-between items-center align-middle mx-3 bg-warning/60 outline-yellow-500 backdrop-blur-md p-3 rounded-lg">
-                        <img
-                            src="/icon-192.png"
-                            alt="Logo"
-                            className="w-12 h-12 border-2 border-white rounded-full"
-                        />
-                        <div className="flex gap-2">
-                            <button className="btn btn-outline-warning" onClick={() => handleInstallLater()}>
+                <div className="w-full sm:max-w-[560px] ">
+                    <div className="flex justify-center items-center align-middle bg-warning p-3">
+                        <span>Now, App is avilable!</span>
+                        <div className="flex gap-2 mx-2">
+                            <span className="btn btn-xs" onClick={() => handleInstallLater()}>
                                 Later
-                            </button>
-                            <button className="btn btn-outline-warning border-white text-white " onClick={() => handleInstall()}>
+                            </span>
+                            <span className="btn btn-xs" onClick={() => handleInstall()}>
                                 Install
-                            </button>
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -53,7 +53,7 @@ const cartSlice = createSlice({
 // Helper function to update totals
 const updateTotals = (state) => {
   state.totalItems = state.cartItems.reduce((count, item) => count + item.quantity, 0);
-  state.totalPrice = state.cartItems.reduce((sum, item) => sum + item.price.offer * item.quantity, 0);
+  state.totalPrice = state.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 };
 
 export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = cartSlice.actions;
