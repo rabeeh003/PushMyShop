@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import MapComponent from './components/MapComponent';
-import { selectCartItems, selectTotalPrice } from '../../store/cartSlice';
+import { clearCart, selectCartItems, selectTotalPrice } from '../../store/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,8 +15,8 @@ function LocationPage() {
     const [address, setAddress] = useState('');
     const paymentSectionRef = useRef(null);
 
-    const navigate = useNavigate(); 
-    
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     // Redux state selectors
     const cartItems = useSelector(selectCartItems);
@@ -79,7 +79,10 @@ function LocationPage() {
             const response = await axios.post('https://lewoffy.infineur.com/public/api/place-order', updatedOrderDetails);
             console.log('Order placed successfully:', response.data);
             toast.success('Order placed successfully!');
-            navigate('/');
+            dispatch(clearCart());
+            setTimeout(() => {
+                navigate('/');
+            }, 4000);
         } catch (error) {
             console.error('Error placing order:', error);
             toast.error('Failed to place order. Please try again.');

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { MapPin, Plus, Minus, Crosshair } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 // Custom marker component
 const Marker = ({ lat, lng }) => (
@@ -10,7 +11,6 @@ const Marker = ({ lat, lng }) => (
 );
 
 function MapComponent({ position, setPosition, defaultLocation }) {
-   // Current position
   const [zoom, setZoom] = useState(11); // Default zoom level
 
   const handleMapClick = ({ lat, lng }) => {
@@ -27,21 +27,39 @@ function MapComponent({ position, setPosition, defaultLocation }) {
         (pos) => {
           const { latitude, longitude } = pos.coords;
           setPosition({ lat: latitude, lng: longitude });
-          setZoom(15); // Adjust zoom for better visibility of the location
+          setZoom(15); // Adjust zoom for better visibility
         },
-        () => alert('Unable to retrieve your location')
+        (err) => {
+          console.error(`Geolocation error (${err.code}): ${err.message}`);
+          switch (err.code) {
+            case 1:
+              toast.warning('Permission denied. Please allow location access in your browser.');
+              break;
+            case 2:
+              toast.warning('Position unavailable. Try again in an area with better connectivity.');
+              break;
+            case 3:
+              toast.warning('Location request timed out. Please try again.');
+              break;
+            default:
+              toast.error('An unknown error occurred.');
+          }
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
       );
     } else {
-      alert('Geolocation is not supported by your browser.');
+      toast.error('Geolocation is not supported by your browser.');
     }
   };
+  
 
   return (
     <div style={{ height: '80vh', width: '100%' }} className="relative">
       <GoogleMapReact
+        key={`${position.lat}-${position.lng}`} // Force re-render when position changes
         bootstrapURLKeys={{ key: 'AIzaSyCPvqKJigbPJWjWpPcHXQ-c5TxuHTXQaRM' }} // Replace with your API key
         defaultCenter={defaultLocation}
-        center={position}
+        center={position} // Dynamically center the map
         zoom={zoom}
         onClick={handleMapClick}
         onChange={({ zoom }) => handleZoomChange(zoom)} // Handle zoom changes
@@ -62,7 +80,10 @@ function MapComponent({ position, setPosition, defaultLocation }) {
       {/* Controls Section */}
       <div className="absolute top-[50vh] right-3 z-50 flex flex-col gap-2">
         {/* Current Location Button */}
-        <span className="tooltip tooltip-left tooltip-warning tooltip-open" data-tooltip="Current Location">
+        <span
+          className="tooltip tooltip-left tooltip-warning tooltip-open"
+          data-tooltip="Current Location"
+        >
           <button
             className="bg-white p-2 rounded-sm shadow hover:bg-gray-200 flex justify-center items-center"
             onClick={handleCurrentLocation}
@@ -71,6 +92,7 @@ function MapComponent({ position, setPosition, defaultLocation }) {
           </button>
         </span>
       </div>
+      
     </div>
   );
 }
