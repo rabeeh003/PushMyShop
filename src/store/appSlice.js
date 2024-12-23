@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // Initial state for the appSlice
 const initialState = {
-    userData: null, // To store user data
-    shopData: null, // To store shop data (app data)
-    loading: false, // To manage loading state
-    error: null, // For any errors that occur during fetching
+    userData: null,
+    shopData: null, 
+    loading: false, 
+    error: null, 
 };
 
 // Create a slice for app

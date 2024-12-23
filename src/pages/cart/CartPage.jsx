@@ -37,7 +37,7 @@ function CartPage() {
                 <Link to="/">
                     <ChevronLeft className="absolute left-3 top-4 w-6 h-6" />
                 </Link>
-                <span className="text-center text-xl font-semibold">Shop Name</span>
+                <span className="text-center text-xl font-semibold">Lewoffy</span>
             </div>
 
             {cartItems.length > 0 ? (
@@ -108,7 +108,7 @@ function CartPage() {
                                 <div className="flex flex-col items-start">
                                     <span className="font-semibold text-sm">Delivery Charge</span>
                                     <span className="text-[10px] md:text-xs font-extralight">
-                                        Save {shopData?.delivery_charges} on Delivery fee by ordering above $30
+                                        Save AED {shopData?.delivery_charges} on Delivery fee by ordering above AED 30
                                     </span>
                                 </div>
                                 <span className="text-warning text-sm">
@@ -117,7 +117,7 @@ function CartPage() {
                             </div>
                             <div className="flex justify-between items-center mt-2 border-t border-gray-400 pt-2">
                                 <span className="font-semibold text-sm">Total</span>
-                                <span className="text-sm font-bold">AED {(totalPrice + (totalPrice >= 30 ? 0 : 5  )).toFixed(2)}</span>
+                                <span className="text-sm font-bold">AED {(totalPrice + (totalPrice >= 30 ? 0 : 2  )).toFixed(2)}</span>
                             </div>
                         </div>
                         {/* Delivery Address */}

@@ -46,27 +46,10 @@ function LocationPage() {
 
         // Update placeOrderPerams dynamically
         const updatedOrderDetails = {
-            token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xld29mZnkuaW5maW5ldXIuY29tL3B1YmxpYy9hcGkvbG9naW4iLCJpYXQiOjE3MzQ4NzAxNjUsIm5iZiI6MTczNDg3MDE2NSwianRpIjoib3ZxbEFqOHpObTRIWDBMTCIsInN1YiI6OTYxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.rMtpWQwnP8hBYikWckv25rHKIbwxSMM_4PTFDznb3tE",
+            token: userData.data.auth_token,
             user: {
                 success: true,
-                data: {
-                    id: 961,
-                    auth_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xld29mZnkuaW5maW5ldXIuY29tL3B1YmxpYy9hcGkvbG9naW4iLCJpYXQiOjE3MzQ4NzAxNjUsIm5iZiI6MTczNDg3MDE2NSwianRpIjoib3ZxbEFqOHpObTRIWDBMTCIsInN1YiI6OTYxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.rMtpWQwnP8hBYikWckv25rHKIbwxSMM_4PTFDznb3tE",
-                    name: "Nick Bevis",
-                    email: "bevois_9@hotmail.com",
-                    phone: "+7795348880",
-                    default_address_id: 1281,
-                    default_address: {
-                        address: "1 London Rd, Southampton SO15 2AE, UK",
-                        house: "cs",
-                        latitude: "50.9105468",
-                        longitude: "-1.4049018",
-                        tag: "sc",
-                    },
-                    delivery_pin: "TBTT5",
-                    wallet_balance: 0,
-                    avatar: null,
-                },
+                data: userData.data,
                 running_order: null,
                 delivery_details: null,
             },

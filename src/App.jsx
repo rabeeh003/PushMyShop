@@ -5,6 +5,7 @@ import HomePage from "./pages/home/HomePage";
 import CartPage from "./pages/cart/CartPage";
 import LocationPage from "./pages/location/LocationPage";
 import OTPPage from "./pages/auth/OtpPage";
+import OrderesPage from "./pages/myorder/OrderesPage";
 
 function App() {
   if ('serviceWorker' in navigator) {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/auth" element={<OTPPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/location" element={<LocationPage />} />
+          <Route path="/orders" element={<OrderesPage />} />
         </Routes>
       </Router>
     </div>

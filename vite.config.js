@@ -9,9 +9,9 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Push My Store',
-        short_name: 'PMS',
-        description: 'Order food online with Push My Store',
+        name: 'Lewoffy',
+        short_name: 'Lewoffy',
+        description: 'Order food online with Lewoffy',
         icons: [
           {
             src: '/icon-192.png',

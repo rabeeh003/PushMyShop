@@ -1,28 +1,44 @@
-import { LandPlotIcon, Locate, MapPin, Search, SearchIcon, Star, Timer } from 'lucide-react'
+import { LandPlotIcon, Locate, MapPin, Search, SearchIcon, Star, Timer, User2 } from 'lucide-react'
 import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import InstallPWA from './InstallPWA';
 import { useSelector } from 'react-redux';
 import { selectShopData } from '../../../store/appSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 function BannerComponent() {
   const shopData = useSelector(selectShopData);
+  const navigate = useNavigate();
   return (
-    <div className="w-full mb-4 ">
+    <div className="w-full mb-4 relative ">
+      {/* top Icons */}
+      <div className="absolute top-4 left-4 ">
+        <button
+          onClick={() => {
+            console.log("Navigating to /orders...");
+            navigate('/orders');
+          }}
+          className="p-1 z-50 bg-white rounded-full shadow-md hover:bg-gray-100">
+          <span className='tooltip tooltip-right tooltip-warning tooltip-open' data-tooltip='Orders'>
+            <User2 className="w-7 h-7 p-1 text-gray-500" />
+          </span>
+        </button>
+      </div>
+      <div className="absolute top-4 right-4">
+        <button className="p-1 bg-white rounded-full shadow-md hover:bg-gray-100">
+          <SearchIcon className="w-7 h-7 p-1 text-gray-500" />
+        </button>
+      </div>
       {/* Banner Image */}
       <div className="-z-30 relative">
         <img
-          src="https://cdn.oliverbonacininetwork.com/uploads/sites/42/2021/01/OB-Bayview-LocalLicious-2000x1333-1.jpg"
+          src="/baner.jpg"
           alt="Starbucks Coffee"
           className="w-full h-52 object-cover filter brightness-90"
         />
-        {/* search Icon */}
-        {/* <div className="absolute top-2 right-2">
-          <button className="p-1 bg-white rounded-full shadow-md hover:bg-gray-100">
-            <SearchIcon className="w-5 h-5 text-gray-500" />
-          </button>
-        </div> */}
+
       </div>
 
       {/* Content */}
@@ -30,7 +46,7 @@ function BannerComponent() {
         {/* Header */}
         <div className="flex items-center">
           <img
-           src="/icon-512.png"
+            src="/icon-512.png"
             // src={"https://lewoffy.infineur.com/" + shopData?.image}
             alt="Logo"
             className="w-16 h-15 rounded-full mr-3"

@@ -18,16 +18,26 @@ const OTPPage = () => {
 
     const handleSendOtp = () => {
         if (mobileNumber.length >= 8) {
-            axios.post("https://lewoffy.infineur.com/send-otp", { phone: mobileNumber, contry: contry })
+            axios.post("https://lewoffy.infineur.com/public/api/custom-otp-user", { phone: (contry + mobileNumber.toString()) })
+                //exsame : https://lewoffy.infineur.com/public/api/custom-otp-user?phone=+919001234567
                 .then((response) => {
-                    if (response.data.success === true) {
+                    if (response.data.otp === true) {
                         setStep(2)
                     } else {
-                        toast.error("Please enter a valid phone number");
+                        toast.error("OTP not sent");
                     }
                 })
         } else {
-            toast.error("Please enter a valid phone number");
+            if (error.response) {
+                // Server returned a response
+                toast.error(`Unvalid Number: ${error?.response.data?.message}`);
+            } else if (error.request) {
+                // No response received
+                toast.error("Network Error: Please check your connection.");
+            } else {
+                // Other errors
+                toast.error(`Error: ${error.message}`);
+            }
         }
     };
 
@@ -48,36 +58,42 @@ const OTPPage = () => {
     };
 
     const handleOtpSubmit = () => {
-        axios.post("https://lewoffy.infineur.com/verify-otp", { phone: mobileNumber, otp: otp.join("") }).then((response) => {
-            if (response.data.status === "success") {
-                setStep(2);
-                dispatch(setUserData(response.data))
-                toast.success("OTP verified successfully");
-                if (response.data.new - user === true) {
-                    setStep(3)
+        axios.post(`https://lewoffy.infineur.com/public/api/login-otp-user`, { phone: (contry + mobileNumber.toString()), otp: otp.join("") }) // exsample : https://lewoffy.infineur.com/public/api/login-otp-user?phone=+919001234567&otp=123456
+            .then((response) => {
+                if (response.data.success === true) {
+                    setStep(2);
+                    toast.success("OTP verified successfully");
+                    dispatch(setUserData(response.data))
+                    navigate("/");
                 } else {
-                    navigate(-1);
+                    if (response.data.data === 'NEWUSER') {
+                        setStep(3)
+                    } else if (error.response) {
+                        toast.error(`Invalid otp Error: ${error?.response.data?.message}`);
+                    } else if (error.request) {
+                        toast.error("Network Error: Please check your connection.");
+                    } else {
+                        toast.error(`Error: ${error.message}`);
+                    }
                 }
-            } else {
-                toast.error("Invalid OTP");
-            }
-        }).catch((error) => {
-            toast.error("Error verifying OTP:", error);
-        });
+            }).catch((error) => {
+                toast.error("Error verifying OTP:", error);
+            });
     };
 
     const handleNameSubmit = () => {
-        axios.post("https://lewoffy.infineur.com/update-user", { name: name, user: selectUserData }).then((response) => {
-            if (response.data.status === "success") {
-                dispatch(setUserData(response.data))
-                toast.success("Name updated successfully");
-                navigate(-1);
-            } else {
-                toast.error("Error updating name");
-            }
-        }).catch((error) => {
-            toast.error("Error updating name:", error);
-        });
+        axios.post("https://lewoffy.infineur.com/public/api/register-otp-user", { phone: (contry + mobileNumber.toString()), otp: otp.join(""), name: name }) // exsample : https://lewoffy.infineur.com/public/api/register-otp-user?phone=+919001234567&otp=123456&name=John+Doe
+            .then((response) => {
+                if (response.data.success === true) {
+                    dispatch(setUserData(response.data))
+                    toast.success("Verified successfully");
+                    navigate(-1);
+                } else {
+                    toast.error("Error updating name");
+                }
+            }).catch((error) => {
+                toast.error("Error updating name:", error);
+            });
     };
 
     return (
@@ -101,20 +117,20 @@ const OTPPage = () => {
                             </label>
                             <div className="flex">
                                 <select onChange={(e) => setContry(e.target.value)} className="p-2 max-w-20 border rounded-l-md bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-warning">
-                                    <option value="+971">+971 (UAE)</option>
-                                    <option value="+966">+966 (Saudi Arabia)</option>
-                                    <option value="+91">+91 (India)</option>
-                                    <option value="+92">+92 (Pakistan)</option>
-                                    <option value="+249">+249 (Sudan)</option>
-                                    <option value="+20">+20 (Egypt)</option>
-                                    <option value="+965">+965 (Kuwait)</option>
-                                    <option value="+974">+974 (Qatar)</option>
-                                    <option value="+973">+973 (Bahrain)</option>
-                                    <option value="+968">+968 (Oman)</option>
-                                    <option value="+964">+964 (Iraq)</option>
-                                    <option value="+962">+962 (Jordan)</option>
-                                    <option value="+963">+963 (Syria)</option>
-                                    <option value="+961">+961 (Lebanon)</option>
+                                    <option value="971">+971 (UAE)</option>
+                                    <option value="966">+966 (Saudi Arabia)</option>
+                                    <option value="91">+91 (India)</option>
+                                    <option value="92">+92 (Pakistan)</option>
+                                    <option value="249">+249 (Sudan)</option>
+                                    <option value="20">+20 (Egypt)</option>
+                                    <option value="965">+965 (Kuwait)</option>
+                                    <option value="974">+974 (Qatar)</option>
+                                    <option value="973">+973 (Bahrain)</option>
+                                    <option value="968">+968 (Oman)</option>
+                                    <option value="964">+964 (Iraq)</option>
+                                    <option value="962">+962 (Jordan)</option>
+                                    <option value="963">+963 (Syria)</option>
+                                    <option value="961">+961 (Lebanon)</option>
                                 </select>
 
                                 <input
@@ -178,7 +194,7 @@ const OTPPage = () => {
                     </div>
                 )}
                 {step === 3 && (
-                    <div>
+                    <div className="flex flex-col items-center gap-3 justify-center">
                         <h2 className="text-xl font-semibold text-center mb-4">
                             Enter Your Name
                         </h2>
@@ -187,7 +203,7 @@ const OTPPage = () => {
                             placeholder="Enter Your Name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full p-2 border bg-white text-gray-500 rounded-md input"
+                            className="input min-w-full p-2 border bg-white text-gray-500 rounded-md "
                         />
                         <button
                             onClick={handleNameSubmit}
