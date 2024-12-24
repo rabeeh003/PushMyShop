@@ -11,6 +11,7 @@ import {
     selectTotalPrice,
 } from '../../store/cartSlice';
 import { selectShopData } from '../../store/appSlice';
+import DeliveryLocationCard from './components/DeliveryLocationCard';
 
 function CartPage() {
     const dispatch = useDispatch();
@@ -137,6 +138,7 @@ function CartPage() {
                             </div>
                             <span className='text-xs text-warning font-bold text-end'>Change</span>
                         </div> */}
+                        <DeliveryLocationCard/>
                         <div className='h-20'></div>
                     </section>
                     <BottumComponent />

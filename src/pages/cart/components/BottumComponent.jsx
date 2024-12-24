@@ -15,7 +15,7 @@ function BottumComponent() {
                 <p className="text-sm">{totalItems} {totalItems === 1 ? 'item' : 'items'} Added</p>
             </div>
             {/* View Cart Button */}
-            <Link to="/location" className="btn btn-warning text-white text-sm font-semibold py-2 px-4 rounded-md shadow">
+            <Link to="/checkout" className="btn btn-warning text-white text-sm font-semibold py-2 px-4 rounded-md shadow">
                 Order
             </Link>
         </div>

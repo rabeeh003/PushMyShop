@@ -31,8 +31,8 @@ function OrdersPage() {
         <div className="relative min-h-screen bg-white text-black">
             {/* Header */}
             <div className="flex items-center justify-center h-14 w-full sticky top-0 bg-white/60 dark:bg-inherit backdrop-blur-md pt-3 z-50">
-                <Link to="/">
-                    <ChevronLeft className="absolute left-3 top-4 w-6 h-6" />
+                <Link to="/account">
+                    <ChevronLeft className="absolute left-3 top-6 w-6 h-6" />
                 </Link>
                 <div className="flex flex-col items-center justify-center">
                     <span className="text-center text-xl font-semibold">

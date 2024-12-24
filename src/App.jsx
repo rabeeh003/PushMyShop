@@ -3,9 +3,12 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import CartPage from "./pages/cart/CartPage";
-import LocationPage from "./pages/location/LocationPage";
+import CheckOutPage from "./pages/checkOut/CheckOutPage";
 import OTPPage from "./pages/auth/OtpPage";
 import OrderesPage from "./pages/myorder/OrderesPage";
+import AboutPage from "./pages/about/AboutPage";
+import Address from "./pages/address/Address";
+import AddLocationPage from "./pages/address/AddLocation";
 
 function App() {
   if ('serviceWorker' in navigator) {
@@ -23,8 +26,13 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<OTPPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/location" element={<LocationPage />} />
-          <Route path="/orders" element={<OrderesPage />} />
+          <Route path="/checkout" element={<CheckOutPage />} />
+          <Route path="/account">
+            <Route index element={<AboutPage />} />
+            <Route path="orders" element={<OrderesPage />} />
+            <Route path="address" element={<Address />} />
+            <Route path="add-address" element={<AddLocationPage />} />
+          </Route>
         </Routes>
       </Router>
     </div>

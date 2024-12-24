@@ -18,7 +18,7 @@ function BannerComponent() {
         <button
           onClick={() => {
             console.log("Navigating to /orders...");
-            navigate('/orders');
+            navigate('/account');
           }}
           className="p-1 z-50 bg-white rounded-full shadow-md hover:bg-gray-100">
           <span className='tooltip tooltip-right tooltip-warning tooltip-open' data-tooltip='Orders'>

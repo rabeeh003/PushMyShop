@@ -6,9 +6,9 @@ import { clearCart, selectCartItems, selectTotalPrice } from '../../store/cartSl
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { selectShopData, selectUserData } from '../../store/appSlice';
+import { selectCurrentDeliveryLocation, selectLocations, selectShopData, selectUserData } from '../../store/appSlice';
 
-function LocationPage() {
+function CheckOutPage() {
     const [selectedOption, setSelectedOption] = useState('');
     const defaultLocation = { lat: 25.2048, lng: 55.2708 }; // Default position (UAE: Dubai)
     const [position, setPosition] = useState(defaultLocation);
@@ -23,6 +23,7 @@ function LocationPage() {
     const productQuantity = useSelector(selectCartItems);
     const totalPrice = useSelector(selectTotalPrice);
     const userData = useSelector(selectUserData);
+    const location = useSelector(selectCurrentDeliveryLocation);
 
     useEffect(() => {
         if (!userData) {
@@ -51,16 +52,16 @@ function LocationPage() {
                 success: true,
                 data: userData.data,
                 running_order: null,
-                delivery_details: null,
+                delivery_details: location,
             },
             order: cartItems,
             coupon: null,
             location: {
-                lat: position.lat.toString(),
-                lng: position.lng.toString(),
-                address: address,
+                lat: location.lat.toString(),
+                lng: location.lng.toString(),
+                address: location.address,
                 house: "cs",
-                tag: "sc",
+                tag: location.tag,
             },
             order_comment: null,
             total: {
@@ -81,7 +82,7 @@ function LocationPage() {
             toast.success('Order placed successfully!');
             dispatch(clearCart());
             setTimeout(() => {
-                navigate('/');
+                navigate('/account/orders');
             }, 4000);
         } catch (error) {
             console.error('Error placing order:', error);
@@ -97,23 +98,14 @@ function LocationPage() {
                 <MapComponent position={position} setPosition={setPosition} defaultLocation={defaultLocation} />
             </div>
             <div ref={paymentSectionRef}>
-                <section className="sticky mt-5 bg-black text-center p-3 rounded-xl text-white z-50">
-                    <p className="text-sm text-white pb-2">Select your location for delivery</p>
+                <section className="sticky -mt-5 pt-8 bg-black text-center p-3 rounded-t-xl text-white z-50">
+                    <p className="text-sm text-white pb-2">Confirm your location for delivery</p>
                     <button
                         className="btn btn-warning w-[85%]"
                         onClick={scrollToPaymentSection}
                     >
-                        Select Location
+                        Confirm Location
                     </button>
-                    <div className="flex flex-col gap-2 mt-3">
-                        <span className="text-md text-start pb-1 pt-3">Place and Address</span>
-                        <textarea
-                            className="textarea min-w-full"
-                            placeholder="Enter your place and address for delivery"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                        />
-                    </div>
 
                     <h2 className="text-xl text-start font-semibold my-4">Payment</h2>
                     <div className="space-y-4">
@@ -160,4 +152,4 @@ function LocationPage() {
     );
 }
 
-export default LocationPage;
+export default CheckOutPage;
