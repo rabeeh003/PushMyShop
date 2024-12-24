@@ -10,7 +10,7 @@ import {
     removeFromCart,
     selectTotalPrice,
 } from '../../store/cartSlice';
-import { selectShopData } from '../../store/appSlice';
+import {  selectShopData } from '../../store/appSlice';
 import DeliveryLocationCard from './components/DeliveryLocationCard';
 
 function CartPage() {
@@ -32,9 +32,9 @@ function CartPage() {
     };
 
     return (
-        <div className="relative min-h-screen">
+        <div className="relative min-h-screen bg-white text-black">
             {/* Header */}
-            <div className="flex items-center justify-center h-14 w-full sticky top-0 bg-white/60 dark:bg-inherit backdrop-blur-md pt-3 z-50">
+            <div className="flex items-center justify-center h-14 w-full sticky top-0 bg-white/60 backdrop-blur-md pt-3 ">
                 <Link to="/">
                     <ChevronLeft className="absolute left-3 top-4 w-6 h-6" />
                 </Link>
@@ -100,7 +100,7 @@ function CartPage() {
                         </div>
                         {/* Bill Details */}
                         <span className="text-center text-lg font-semibold">Bill Details</span>
-                        <div className="relative p-4 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-sm my-3">
+                        <div className="relative p-4 bg-gray-200 rounded-lg shadow-sm my-3">
                             <div className="flex justify-between items-center mt-2">
                                 <span className="text-sm font-semibold">Subtotal</span>
                                 <span className="text-sm">AED {totalPrice.toFixed(2)}</span>
@@ -122,22 +122,6 @@ function CartPage() {
                             </div>
                         </div>
                         {/* Delivery Address */}
-                        {/* <div className="flex justify-between items-start p-3 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-sm my-3">
-                            <div className='flex gap-2'>
-                                <img
-                                    src={'https://img.freepik.com/free-vector/delivery-man-with-parcel-box-holding-smartphone-with-tracking-number-vector-illustration-flat-cartoon-style_138676-3237.jpg?w=2000'}
-                                    alt='map'
-                                    className="w-24 h-24 rounded-lg object-cover"
-                                />
-                                <div className='flex flex-col gap-1'>
-                                    <span className='font-semibold text-sm pb-1'>Delivery to:</span>
-                                    <span className="font-extralight text-xs">123 Main Street, City, Country</span>
-                                    <span className="font-extralight text-xs">latitude: 12423423</span>
-                                    <span className="font-extralight text-xs">longtitude: 12423423</span>
-                                </div>
-                            </div>
-                            <span className='text-xs text-warning font-bold text-end'>Change</span>
-                        </div> */}
                         <DeliveryLocationCard/>
                         <div className='h-20'></div>
                     </section>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { LoadScript } from '@react-google-maps/api';
 import MapComponent from './components/MapComponent';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +7,6 @@ import { setLocations } from '../../store/appSlice';
 import { useNavigate } from 'react-router-dom';
 
 const defaultLocation = { lat: 25.2048, lng: 55.2708 }; // Default to Dubai
-const libraries = ['places']; // Places library for autocomplete
 
 function AddLocationPage() {
     const [position, setPosition] = useState(defaultLocation);
@@ -51,7 +49,6 @@ function AddLocationPage() {
     
 
     return (
-        <LoadScript googleMapsApiKey="AIzaSyCBmFnNqWbizwxbnfF-6F4hUNp8jh5_RlY" libraries={libraries}>
             <div className="relative">
                 <div className="sticky top-0 left-0 w-full z-10">
                     <MapComponent position={position} setPosition={setPosition} defaultLocation={defaultLocation} />
@@ -72,7 +69,6 @@ function AddLocationPage() {
                 </section>
                 <ToastContainer />
             </div>
-        </LoadScript>
     );
 }
 

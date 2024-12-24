@@ -9,6 +9,9 @@ import OrderesPage from "./pages/myorder/OrderesPage";
 import AboutPage from "./pages/about/AboutPage";
 import Address from "./pages/address/Address";
 import AddLocationPage from "./pages/address/AddLocation";
+import { LoadScript } from "@react-google-maps/api";
+
+const libraries = ['places']; // google map
 
 function App() {
   if ('serviceWorker' in navigator) {
@@ -20,7 +23,9 @@ function App() {
   }
 
   return (
-    <div className="sm:max-w-[560px] mx-auto">
+    <LoadScript googleMapsApiKey="AIzaSyCBmFnNqWbizwxbnfF-6F4hUNp8jh5_RlY" libraries={libraries}>
+
+    <div className="sm:max-w-[560px] mx-auto bg-white">
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -36,6 +41,7 @@ function App() {
         </Routes>
       </Router>
     </div>
+    </LoadScript>
   );
 }
 

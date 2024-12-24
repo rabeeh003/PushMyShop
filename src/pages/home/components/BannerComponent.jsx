@@ -14,76 +14,74 @@ function BannerComponent() {
   return (
     <div className="w-full mb-4 relative ">
       {/* top Icons */}
-      <div className="absolute top-4 left-4 ">
+      <div className="absolute top-4 left-4 z-10">
         <button
           onClick={() => {
             console.log("Navigating to /orders...");
             navigate('/account');
           }}
           className="p-1 z-50 bg-white rounded-full shadow-md hover:bg-gray-100">
-          <span className='tooltip tooltip-right tooltip-warning tooltip-open' data-tooltip='Orders'>
-            <User2 className="w-7 h-7 p-1 text-gray-500" />
-          </span>
+          <User2 className="w-7 h-7 p-1 text-gray-500" />
         </button>
       </div>
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4 z-10">
         <button className="p-1 bg-white rounded-full shadow-md hover:bg-gray-100">
           <SearchIcon className="w-7 h-7 p-1 text-gray-500" />
         </button>
       </div>
       {/* Banner Image */}
-      <div className="-z-30 relative">
+      <div className=" relative">
         <img
           src="/baner.jpg"
           alt="Starbucks Coffee"
           className="w-full h-52 object-cover filter brightness-90"
         />
+        {/* Content */}
+        <div className='absolute -bottom-20 '>
+          <div className="py-2 px-4 w-[85%] mx-auto bg-white mb-3 rounded-lg shadow-md ">
+            {/* Header */}
+            <div className="flex items-center">
+              <img
+                src="/icon-512.png"
+                // src={"https://lewoffy.infineur.com/" + shopData?.image}
+                alt="Logo"
+                className="w-16 h-15 rounded-full mr-3"
+              />
+              <div>
+                <h3 className="text-lg text-gray-800  font-semibold">Lewoffy</h3>
+                <p className="text-gray-500 text-sm">{shopData?.address}</p>
+              </div>
+            </div>
 
-      </div>
+            {/* Ratings, Distance, and Delivery Time */}
+            <div className="grid grid-cols-2 mt-3 text-sm">
+              {/* Left Column */}
+              <div className="flex flex-col text-green-500">
+                <div className="flex items-center">
+                  <Star className="w-4 h-4 mr-1" />
+                  <span>3.7 (1k+ Reviews)</span>
+                </div>
+                <span className="mt-2 text-gray-600 text-sm">4.0km Free Delivery</span>
+              </div>
 
-      {/* Content */}
-      <div className="py-2 px-4 w-[85%] mx-auto -mt-16 z-50 bg-white mb-3 rounded-lg shadow-md ">
-        {/* Header */}
-        <div className="flex items-center">
-          <img
-            src="/icon-512.png"
-            // src={"https://lewoffy.infineur.com/" + shopData?.image}
-            alt="Logo"
-            className="w-16 h-15 rounded-full mr-3"
-          />
-          <div>
-            <h3 className="text-lg text-gray-800  font-semibold">Lewoffy</h3>
-            <p className="text-gray-500 text-sm">{shopData?.address}</p>
+              {/* Right Column */}
+              <div className="text-gray-500">
+                <div className="flex items-center">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  <span>1 km</span>
+                </div>
+                <div className="flex mt-2">
+                  <Timer className="w-4 h-4 mr-1" />
+                  <span>15 min</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Ratings, Distance, and Delivery Time */}
-        <div className="grid grid-cols-2 mt-3 text-sm">
-          {/* Left Column */}
-          <div className="flex flex-col text-green-500">
-            <div className="flex items-center">
-              <Star className="w-4 h-4 mr-1" />
-              <span>3.7 (1k+ Reviews)</span>
-            </div>
-            <span className="mt-2 text-gray-600 text-sm">4.0km Free Delivery</span>
-          </div>
-
-          {/* Right Column */}
-          <div className="text-gray-500">
-            <div className="flex items-center">
-              <MapPin className="w-4 h-4 mr-1" />
-              <span>1 km</span>
-            </div>
-            <div className="flex mt-2">
-              <Timer className="w-4 h-4 mr-1" />
-              <span>15 min</span>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <section className="py-3 px-2 sm:px-0">
+      <section className="py-3 px-2 sm:px-0 mt-24">
         <div className="custom-container  sm:px-2">
           <Swiper
             className="coupon"
@@ -94,10 +92,10 @@ function BannerComponent() {
           >
             {/* Slide 1 */}
             <SwiperSlide>
-              <div className="relative flex items-center gap-1 sm:gap-4 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 sm:p-4 shadow-md">
+              <div className="relative flex items-center gap-1 sm:gap-4 bg-gray-100 rounded-lg p-2 sm:p-4 shadow-md">
                 {/* Circular decorations */}
-                <div className="absolute top-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full translate-y-1/2"></div>
+                <div className="absolute top-0 left-[10%] w-4 h-4 bg-white  rounded-full -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-white rounded-full translate-y-1/2"></div>
 
                 {/* Icon */}
                 <div className="offer-icon">
@@ -110,10 +108,10 @@ function BannerComponent() {
 
                 {/* Content */}
                 <div className="offer-content">
-                  <h5 className="text-gray-800 dark:text-gray-100 text-xs sm:text-sm font-semibold">
+                  <h5 className="text-gray-800 text-xs sm:text-sm font-semibold">
                     50% OFF upto & $25
                   </h5>
-                  <p className="text-gray-500 dark:text-gray-400 text-[9px] sm:text-xs mt-1">
+                  <p className="text-gray-500 text-[9px] sm:text-xs mt-1">
                     Use Code MEFRGD124
                   </p>
                 </div>
@@ -122,10 +120,10 @@ function BannerComponent() {
 
             {/* Slide 2 */}
             <SwiperSlide>
-              <div className="relative flex items-center gap-1 md:gap-4 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 md:p-4 shadow-md">
+              <div className="relative flex items-center gap-1 md:gap-4 bg-gray-100 rounded-lg p-2 md:p-4 shadow-md">
                 {/* Circular decorations */}
-                <div className="absolute top-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full translate-y-1/2"></div>
+                <div className="absolute top-0 left-[10%] w-4 h-4 bg-white rounded-full -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-white rounded-full translate-y-1/2"></div>
 
                 {/* Icon */}
                 <div className="offer-icon">
@@ -138,10 +136,10 @@ function BannerComponent() {
 
                 {/* Content */}
                 <div className="offer-content">
-                  <h5 className="text-gray-800 dark:text-gray-100 text-xs md:text-sm font-semibold">
+                  <h5 className="text-gray-800 text-xs md:text-sm font-semibold">
                     50% OFF upto & $25
                   </h5>
-                  <p className="text-gray-500 dark:text-gray-400 text-[9px] md:text-xs mt-1">
+                  <p className="text-gray-500 text-[9px] md:text-xs mt-1">
                     Use Code MEFRGD124
                   </p>
                 </div>
@@ -150,10 +148,10 @@ function BannerComponent() {
 
             {/* Slide 3 */}
             <SwiperSlide>
-              <div className="relative flex items-center gap-1 md:gap-4 bg-gray-100 dark:bg-gray-800 rounded-lg p-2 md:p-4 shadow-md">
+              <div className="relative flex items-center gap-1 md:gap-4 bg-gray-100 rounded-lg p-2 md:p-4 shadow-md">
                 {/* Circular decorations */}
-                <div className="absolute top-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-backgroundPrimary rounded-full translate-y-1/2"></div>
+                <div className="absolute top-0 left-[10%] w-4 h-4 bg-white rounded-full -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-[10%] w-4 h-4 bg-white rounded-full translate-y-1/2"></div>
 
                 {/* Icon */}
                 <div className="offer-icon">
@@ -166,10 +164,10 @@ function BannerComponent() {
 
                 {/* Content */}
                 <div className="offer-content">
-                  <h5 className="text-gray-800 dark:text-gray-100 text-xs md:text-sm font-semibold">
+                  <h5 className="text-gray-800 text-xs md:text-sm font-semibold">
                     50% OFF upto & $25
                   </h5>
-                  <p className="text-gray-500 dark:text-gray-400 text-[9px] md:text-xs mt-1">
+                  <p className="text-gray-500 text-[9px] md:text-xs mt-1">
                     Use Code MEFRGD124
                   </p>
                 </div>
