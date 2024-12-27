@@ -11,17 +11,17 @@ export const MenuAccordion = ({ category, items }) => {
   }
 
   return (
-    <div className="border-b dark:border-gray-600 rounded-lg mb-4 w-full">
+    <div className="border-b border-gray-400 rounded-lg mb-4 w-full">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center py-1 hover:bg-gray-50 dark:hover:bg-gray-900"
+        className="w-full flex justify-between items-center py-1 hover:bg-gray-50"
       >
         <span className="font-semibold">{category} ({items.length})</span>
         {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
       </button>
 
       {isOpen && (
-        <div className="border-t dark:border-gray-600">
+        <div className="border-t border-gray-300">
           {items.map((item) => (
             <MenuItem key={item.id} item={item} />
             // <p>hello</p>

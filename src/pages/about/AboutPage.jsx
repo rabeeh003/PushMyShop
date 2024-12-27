@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { selectUserData } from '../../store/appSlice'
 import { useSelector } from 'react-redux'
-import { ChevronLeft, LayoutList, MapPinHouse } from 'lucide-react'
+import { ChevronLeft, ChevronRight, LayoutList, MapPinHouse } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 
 function AboutPage() {
@@ -16,9 +16,9 @@ function AboutPage() {
     return (
         <div className='relative bg-white min-h-screen  text-black'>
             {/* Header */}
-            <div className="flex items-center  justify-center h-14 w-full sticky top-0 bg-white/60 dark:bg-inherit backdrop-blur-md pt-3 z-50">
+            <div className="flex items-center justify-center h-14 w-full bg-warning text-white sticky top-0 pt-3 z-50">
                 <Link to="/">
-                    <ChevronLeft className="absolute  left-3 top-6 w-6 h-6" />
+                    <ChevronLeft className="absolute left-3 top-6 w-6 h-6" />
                 </Link>
                 <div className="flex flex-col items-center justify-center">
                     <span className="text-center text-xl font-semibold">
@@ -26,30 +26,39 @@ function AboutPage() {
                     </span>
                 </div>
             </div>
-            <div className='px-3 py-4'>
+            <div className=' py-4'>
                 {/* profile */}
-                <div className="flex items-center flex-col justify-center gap-2 rounded-lg p-2">
-                    <div className="avatar">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3870/3870822.png" alt="avatar" />
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
-                        <span className="text-center text-xl font-semibold">
-                            {userData?.data.name || 'User Name'}
-                        </span>
-                        <span className="text-center text-xs font-extralight">
-                            {"+" + userData?.data.phone || ''}
-                        </span>
+                <div className="flex items-center flex-col justify-center gap-2 rounded-lg">
+                    <div className='h-32 w-full bg-warning rounded-b-xl -m-16'></div>
+                    <div className='flex items-center flex-col justify-center pt-6 gap-2'>
+                        <div className="avatar avatar-xl avatar-ring ring-white ring-4">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3870/3870822.png" alt="avatar" />
+                        </div>
+                        <div className="flex flex-col items-center justify-center">
+                            <span className="text-center text-xl font-semibold">
+                                {userData?.data.name || 'User Name'}
+                            </span>
+                            <span className="text-center text-xs font-extralight">
+                                {"+" + userData?.data.phone || ''}
+                            </span>
+                        </div>
                     </div>
                 </div>
                 {/* pages */}
-                <div className="flex flex-col gap-2 mt-4">
-                    <Link to='orders' className="flex items-center justify-start p-3 border border-warning rounded-lg hover:bg-yellow-100">
-                        <LayoutList className="w-6 h-6 text-warning" />
-                        <span className="ml-2">Orders</span>
+                <div className="flex flex-col gap-2 px-4 mt-4">
+                    <Link to='orders' className="flex items-center justify-between border border-gray-200 rounded-full hover:bg-yellow-100">
+                        <div className='flex items-center justify-start'>
+                            <LayoutList className="w-12 h-12 p-3 text-warning border rounded-full" />
+                            <span className="ml-2">Orders</span>
+                        </div>
+                        <ChevronRight className='me-3 p-1' />
                     </Link>
-                    <Link to='address' className="flex items-center justify-start p-3 border border-warning rounded-lg hover:bg-yellow-100">
-                        <MapPinHouse className="w-6 h-6 text-warning" />
-                        <span className="ml-2">Address & Location</span>
+                    <Link to='address' className="flex items-center justify-between border border-gray-200 rounded-full hover:bg-yellow-100">
+                        <div className='flex items-center justify-start'>
+                            <MapPinHouse className="w-12 h-12 p-3 text-warning border rounded-full" />
+                            <span className="ml-2">Address & Location</span>
+                        </div>
+                        <ChevronRight className='me-3 p-1' />
                     </Link>
                 </div>
             </div>

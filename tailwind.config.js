@@ -4,6 +4,6 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require("rippleui")],
+  plugins: [require("rippleui"), require('@tailwindcss/line-clamp')],
 }
 

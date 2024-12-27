@@ -1,5 +1,4 @@
 // App.jsx
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import CartPage from "./pages/cart/CartPage";
@@ -22,25 +21,40 @@ function App() {
     });
   }
 
-  return (
-    <LoadScript googleMapsApiKey="AIzaSyCBmFnNqWbizwxbnfF-6F4hUNp8jh5_RlY" libraries={libraries}>
-
-    <div className="sm:max-w-[560px] mx-auto bg-white">
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/auth" element={<OTPPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<CheckOutPage />} />
-          <Route path="/account">
-            <Route index element={<AboutPage />} />
-            <Route path="orders" element={<OrderesPage />} />
-            <Route path="address" element={<Address />} />
-            <Route path="add-address" element={<AddLocationPage />} />
-          </Route>
-        </Routes>
-      </Router>
+  const spinner = (
+    <div className="min-h-screen min-w-full bg-white flex justify-center items-center">
+      <div className="spinner-dot-circle">
+        <div className="spinner-dot spinner-warning"></div>
+        <div className="spinner-dot spinner-warning"></div>
+        <div className="spinner-dot spinner-warning"></div>
+        <div className="spinner-dot spinner-warning"></div>
+        <div className="spinner-dot spinner-warning"></div>
+        <div className="spinner-dot spinner-warning"></div>
+        <div className="spinner-dot spinner-warning"></div>
+        <div className="spinner-dot spinner-warning"></div>
+      </div>
     </div>
+  );
+
+  return (
+    <LoadScript googleMapsApiKey="AIzaSyCBmFnNqWbizwxbnfF-6F4hUNp8jh5_RlY" libraries={libraries} loadingElement={spinner}>
+
+      <div className="sm:max-w-[560px] mx-auto min-h-screen bg-white">
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/auth" element={<OTPPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckOutPage />} />
+            <Route path="/account">
+              <Route index element={<AboutPage />} />
+              <Route path="orders" element={<OrderesPage />} />
+              <Route path="address" element={<Address />} />
+              <Route path="add-address" element={<AddLocationPage />} />
+            </Route>
+          </Routes>
+        </Router>
+      </div>
     </LoadScript>
   );
 }

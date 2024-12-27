@@ -11,45 +11,46 @@ function OrdersPage() {
     const navigate = useNavigate()
 
     const [orders, setOrders] = React.useState([]);
-    
+
     useEffect(() => {
         if (!userData) {
-             navigate('/auth')
+            navigate('/auth')
         } else {
-            axios.post("https://lewoffy.infineur.com/public/api/get-orders", {token: userData.data.auth_token, user_id: userData.data.id})
-            .then((response) => {
-                setOrders(response.data)
-                console.log(response.data)
-            })
-            .catch((error) => {
-                console.error(error);
-            })
+            axios.post("https://lewoffy.infineur.com/public/api/get-orders", { token: userData.data.auth_token, user_id: userData.data.id })
+                .then((response) => {
+                    setOrders(response.data)
+                    console.log(response.data)
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
         }
     }, [userData]);
 
     return (
         <div className="relative min-h-screen bg-white text-black">
             {/* Header */}
-            <div className="flex items-center justify-center h-14 w-full sticky top-0 bg-white/60 dark:bg-inherit backdrop-blur-md pt-3 z-50">
+            <div className="flex items-center  justify-center h-14 w-full sticky top-0 bg-white/60 dark:bg-inherit backdrop-blur-md pt-3 z-50">
                 <Link to="/account">
-                    <ChevronLeft className="absolute left-3 top-6 w-6 h-6" />
+                    <ChevronLeft className="absolute  left-3 top-6 w-6 h-6" />
                 </Link>
                 <div className="flex flex-col items-center justify-center">
                     <span className="text-center text-xl font-semibold">
-                        {userData?.data.name || 'User Name'}
-                    </span>
-                    <span className="text-center text-xs font-extralight">
-                        {"+"+userData?.data.phone || ''}
+                        Orders
                     </span>
                 </div>
             </div>
 
             {/* Orders */}
-            <div className="accordion-group accordion-group-bordered bg-white border-gray-300 mt-5 mx-3">
-                {orders.map((order) => (
-                    <OrderAccordiant key={order.id} order={order} />
-                ))}
-            </div>
+            {orders.length === 0 ? (
+                <p className='text-black text-xs text-center mt-20 mx-3'>No items</p>
+            ) : (
+                <div className="accordion-group accordion-group-bordered bg-white border-gray-300 mt-5 mx-3">
+                    {orders.map((order) => (
+                        <OrderAccordiant key={order.id} order={order} />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

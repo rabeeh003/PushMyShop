@@ -10,6 +10,7 @@ import { selectCurrentDeliveryLocation, selectLocations, selectShopData, selectU
 
 function CheckOutPage() {
     const [selectedOption, setSelectedOption] = useState('');
+    const [isOrderSuccess, setIsOrderSuccess] = useState(false); // State for showing the modal
     const defaultLocation = { lat: 25.2048, lng: 55.2708 }; // Default position (UAE: Dubai)
     const [position, setPosition] = useState(defaultLocation);
     const [address, setAddress] = useState('');
@@ -80,25 +81,55 @@ function CheckOutPage() {
             const response = await axios.post('https://lewoffy.infineur.com/public/api/place-order', updatedOrderDetails);
             console.log('Order placed successfully:', response.data);
             toast.success('Order placed successfully!');
+            setIsOrderSuccess(true); // Show success modal
             dispatch(clearCart());
-            setTimeout(() => {
-                navigate('/account/orders');
-            }, 4000);
         } catch (error) {
             console.error('Error placing order:', error);
             toast.error('Failed to place order. Please try again.');
         }
     };
 
-
+    const handleSuccessModalClose = () => {
+        setIsOrderSuccess(false);
+        navigate('/'); // Redirect to the homepage
+    };
 
     return (
         <div className="relative">
+            {isOrderSuccess && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-xl shadow-lg p-6 text-center max-w-xs w-full">
+                        <img
+                            src="/success-payment-light.gif" // Replace with your success icon image path
+                            alt="Success"
+                            className="w-20 h-20 mx-auto mb-4"
+                        />
+                        <h2 className="text-lg font-semibold text-green-600">Payment Success</h2>
+                        <p className="text-sm text-gray-600 mb-4">
+                            Your payment was successful! Just wait for your food to arrive at your home.
+                        </p>
+                        <div className="space-y-2">
+                            <button
+                                className="btn btn-warning w-full"
+                                onClick={() => navigate('/account/orders')}
+                            >
+                                Track Order Now
+                            </button>
+                            <button
+                                className="btn btn-secondary w-full"
+                                onClick={handleSuccessModalClose}
+                            >
+                                Back to Home
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
             <div className="sticky top-0 left-0 w-full z-10">
                 <MapComponent position={position} setPosition={setPosition} defaultLocation={defaultLocation} />
             </div>
             <div ref={paymentSectionRef}>
-                <section className="sticky -mt-5 pt-8 bg-black text-center p-3 rounded-t-xl text-white z-50">
+                <section className="sticky -mt-5 pt-8 bg-black text-center p-3 rounded-t-xl text-white z-40">
                     <p className="text-sm text-white pb-2">Confirm your location for delivery</p>
                     <button
                         className="btn btn-warning w-[85%]"

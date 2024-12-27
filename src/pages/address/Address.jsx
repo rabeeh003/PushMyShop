@@ -1,5 +1,4 @@
 import { ChevronLeft } from 'lucide-react'
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { selectLocations } from '../../store/appSlice'
@@ -26,7 +25,8 @@ function Address() {
                 </Link>
             </div>
             {/* Address List */}
-            <div className='flex flex-col items-center gap-3 mt-5 px-3'>
+            {address ? (
+                <div className='flex flex-col items-center gap-3 mt-5 px-3'>
                 {address?.map((address) => (
                     <div className='flex px-5 rounded-xl hover:bg-warning/20 border border-warning w-full p-2'>
                         <div>
@@ -39,6 +39,9 @@ function Address() {
                     </div>
                 ))}
             </div>
+            ):(
+                <p className='text-gray-300 text-xs text-center mt-10'>No address</p>
+            )}
         </div>
     )
 }
