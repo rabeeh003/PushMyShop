@@ -175,7 +175,7 @@ const OTPPage = () => {
                             {otp.map((digit, index) => (
                                 <input
                                     key={index}
-                                    type="text"
+                                    type="number"
                                     value={digit}
                                     ref={(el) => (inputRefs.current[index] = el)} // Store ref
                                     onChange={(e) => handleChangeOtp(e.target.value, index)}

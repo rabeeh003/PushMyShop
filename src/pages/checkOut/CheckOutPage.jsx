@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import MapComponent from './components/MapComponent';
 import { clearCart, selectCartItems, selectTotalPrice } from '../../store/cartSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { selectCurrentDeliveryLocation, selectLocations, selectShopData, selectUserData } from '../../store/appSlice';
+import { ChevronLeft } from 'lucide-react';
 
 function CheckOutPage() {
     const [selectedOption, setSelectedOption] = useState('');
@@ -95,7 +96,7 @@ function CheckOutPage() {
     };
 
     return (
-        <div className="relative">
+        <div className="relative bg-white text-black">
             {isOrderSuccess && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-xl shadow-lg p-6 text-center max-w-xs w-full">
@@ -125,18 +126,18 @@ function CheckOutPage() {
                     </div>
                 </div>
             )}
-            <div className="sticky top-0 left-0 w-full z-10">
-                <MapComponent position={position} setPosition={setPosition} defaultLocation={defaultLocation} />
+            <div className="flex items-center justify-center h-14 w-full sticky top-0 bg-white/60 backdrop-blur-md pt-3 z-40">
+                <Link to="/cart">
+                    <ChevronLeft className="absolute  left-3 top-6 w-6 h-6" />
+                </Link>
+                <div className="flex flex-col items-center justify-center">
+                    <span className="text-center text-xl font-semibold">
+                        Payment
+                    </span>
+                </div>
             </div>
             <div ref={paymentSectionRef}>
-                <section className="sticky -mt-5 pt-8 bg-black text-center p-3 rounded-t-xl text-white z-40">
-                    <p className="text-sm text-white pb-2">Confirm your location for delivery</p>
-                    <button
-                        className="btn btn-warning w-[85%]"
-                        onClick={scrollToPaymentSection}
-                    >
-                        Confirm Location
-                    </button>
+                <section className="bg-white text-center p-3 rounded-t-xl text-black z-40">
 
                     <h2 className="text-xl text-start font-semibold my-4">Payment</h2>
                     <div className="space-y-4">

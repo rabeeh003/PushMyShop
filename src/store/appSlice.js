@@ -42,6 +42,16 @@ const appSlice = createSlice({
       state.error = action.payload;
     },
     clearAppState: () => initialState,
+    editAddress: (state, action) => {
+      const { id, updatedAddress } = action.payload;
+      state.locations = state.locations.map((location) =>
+        location.id === id ? { ...location, ...updatedAddress } : location
+      );
+    },
+
+    deleteAddress: (state, action) => {
+      state.locations = state.locations.filter((location) => location.id !== action.payload);
+    },
   },
 });
 
@@ -53,6 +63,8 @@ export const {
   setLoading,
   setError,
   clearAppState,
+  editAddress,
+  deleteAddress,
 } = appSlice.actions;
 
 export const selectUserData = (state) => state.app.userData;

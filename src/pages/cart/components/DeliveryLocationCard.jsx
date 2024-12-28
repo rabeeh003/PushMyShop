@@ -53,15 +53,15 @@ function DeliveryLocationCard() {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white text-black rounded-lg p-5 w-3/4 max-w-md">
+                <div className="fixed inset-0 mx-auto bg-black bg-opacity-50 flex items-end max-w-[560px] z-50">
+                    <div className="bg-white text-black rounded-t-3xl p-5 min-w-full min-h-[40vh]">
                         <div className='flex justify-between'>
                             <h2 className="text-lg font-semibold mb-4">Select Address</h2>
                             <button
                                 onClick={handleAddAddress}
                                 className="btn btn-outline-warning bg-warning/70 btn-sm text-white py-2 px-4 rounded-lg mb-4 flex items-center gap-2"
                             >
-                                <span>Add</span>
+                                <span>Add New</span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -80,9 +80,9 @@ function DeliveryLocationCard() {
                                     <li
                                         key={index}
                                         onClick={() => handleSelectLocation(location)}
-                                        className="cursor-pointer p-3 bg-gray-100 rounded-lg shadow hover:bg-gray-200 dark:hover:bg-gray-600"
-                                    >
-                                        <span className="font-medium">{location.address}</span>
+                                        className={`cursor-pointer p-3 bg-gray-100 rounded-lg shadow hover:bg-gray-200 dark:hover:bg-yellow-50 ${currentDeliveryLocation.id === location.id ? 'border border-warning' :''}`}>
+                                        <span className="font-medium">{location.tag}</span>
+                                        <p className="text-sm">{location.address}</p>
                                         <div className="text-xs text-gray-600 dark:text-gray-400">
                                             Lat: {location.lat}, Lng: {location.lng}
                                         </div>
