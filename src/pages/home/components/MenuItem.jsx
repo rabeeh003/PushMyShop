@@ -70,7 +70,7 @@ export const MenuItem = ({ item }) => {
           <img
             src={
               item.image && item.image.length > 0
-                ? "https://app.mojarestaurant.com/" + item.image
+                ? "https://lewoffy.infineur.com/" + item.image
                 : "/placeholder.png"
             }
             alt={item.name}

@@ -74,13 +74,13 @@ function DeliveryLocationCard() {
                                 </svg>
                             </button>
                         </div>
-                        {locations.length > 0 ? (
+                        {locations?.length > 0 ? (
                             <ul className="space-y-3">
                                 {locations.map((location, index) => (
                                     <li
                                         key={index}
                                         onClick={() => handleSelectLocation(location)}
-                                        className={`cursor-pointer p-3 bg-gray-100 rounded-lg shadow hover:bg-gray-200 dark:hover:bg-yellow-50 ${currentDeliveryLocation.id === location.id ? 'border border-warning' :''}`}>
+                                        className={`cursor-pointer p-3 bg-gray-100 rounded-lg shadow hover:bg-gray-200 dark:hover:bg-yellow-50 ${currentDeliveryLocation?.id === location.id ? 'border border-warning' :''}`}>
                                         <span className="font-medium">{location.tag}</span>
                                         <p className="text-sm">{location.address}</p>
                                         <div className="text-xs text-gray-600 dark:text-gray-400">
