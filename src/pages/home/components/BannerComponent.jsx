@@ -64,11 +64,11 @@ function BannerComponent() {
               <div className="text-gray-500">
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-1" />
-                  <span>1 km</span>
+                  <span>20 km</span>
                 </div>
                 <div className="flex mt-2">
                   <Timer className="w-4 h-4 mr-1" />
-                  <span>15 min</span>
+                  <span>45 min</span>
                 </div>
               </div>
             </div>
