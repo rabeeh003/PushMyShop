@@ -65,7 +65,7 @@ function AddLocationPage() {
                         <span className="text-md text-start pb-1 pt-3">Place tag</span>
                         <input value={tag} type='text' onChange={(e)=>setTag(e.target.value)} className="input min-w-full bg-white text-black border-gray-200" placeholder="Example: Home, Office, etc" />
                     </div>
-                    <button onClick={() => handleSubmit()} className="btn btn-warning w-full mt-5">Add Address</button>
+                    <button onClick={() => handleSubmit()} className="btn bg-main-color w-full mt-5">Add Address</button>
                 </section>
                 <ToastContainer />
             </div>

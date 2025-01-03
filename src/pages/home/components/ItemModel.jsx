@@ -39,7 +39,7 @@ const ItemModal = ({ food, quantity, onClose, onDecrease, onIncrease, onAdd }) =
           <div>
             <h2 className="text-lg font-semibold">{food.name}</h2>
             <div className="flex justify-between items-center mb-4">
-              <span className="text-warning font-semibold text-lg">AED {food.price}</span>
+              <span className="text-main-color font-semibold text-lg">AED {food.price}</span>
               {food.old_price > 0 && food.price < food.old_price && (
                 <span className="text-gray-500 ml-2 line-through">AED {food.old_price}</span>
               )}
@@ -48,34 +48,34 @@ const ItemModal = ({ food, quantity, onClose, onDecrease, onIncrease, onAdd }) =
           {/* Quantity Controls */}
           <div className="flex items-start justify-between">
             {quantity > 0 ? (
-              <div className="flex items-center border border-warning outline-warning bg-warning/50 rounded-lg">
-                <button
-                  onClick={onDecrease}
-                  className="px-1 btn bg-transparent hover:bg-transparent/10"
-                >
-                  {quantity === 1 ? (
-                    <Trash2 className="w-4 h-4 text-red-600" />
-                  ) : (
-                    <Minus className="w-4 h-4 text-white" />
-                  )}
-                </button>
-                <span className="px-4 font-semibold">{quantity}</span>
-                <button
-                  onClick={onIncrease}
-                  className="px-1 btn bg-transparent hover:bg-transparent/10"
-                  disabled={quantity >= 10}
-                >
-                  <Plus className="w-4 h-4 text-white" />
-                </button>
-              </div>
-            ) : (
+            <div className="flex items-center -mt-5 border-2 border-main-color shadow-sm bg-main-color/50 rounded-lg">
               <button
-                onClick={onAdd}
-                className="px-4 py-2 btn btn-outline-warning bg-warning/50 text-white rounded-lg transition-transform duration-300 hover:scale-105 active:scale-95"
+                onClick={onDecrease}
+                className="px-1 btn bg-transparent hover:bg-transparent/10"
               >
-                ADD
+                {quantity === 1 ? (
+                  <Trash2 className="w-4 h-4 text-red-600" />
+                ) : (
+                  <Minus className="w-4 h-4 text-white" />
+                )}
               </button>
-            )}
+              <span className="px-4 text-white font-semibold">{quantity}</span>
+              <button
+                onClick={onIncrease}
+                className="px-1 btn bg-transparent hover:bg-transparent/10"
+                disabled={quantity >= 10}
+              >
+                <Plus className="w-4 h-4 text-white" />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={onAdd}
+              className="px-4 py-2 btn btn-outline shadow-sm bg-main-color/50 text-white -mt-5 rounded-lg transition-transform duration-300 hover:scale-105 active:scale-95"
+            >
+              ADD
+            </button>
+          )}
           </div>
         </div>
         <p className="text-sm text-gray-600">{food.desc}</p>

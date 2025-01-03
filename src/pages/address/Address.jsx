@@ -42,7 +42,7 @@ function Address() {
       <div className="flex flex-col items-center justify-center mt-5 px-3">
         <Link
           to="/account/add-address"
-          className="btn btn-warning text-white text-sm w-full font-semibold py-2 px-4 rounded-md shadow"
+          className="btn bg-main-color text-white text-sm w-full font-semibold py-2 px-4 rounded-md shadow"
         >
           Add New Address
         </Link>
@@ -57,7 +57,7 @@ function Address() {
                 <Map className="text-gray-500" />
               </div>
               <div
-                className="flex items-center justify-between bg-gray-50 text-gray-500 border rounded-lg w-full p-4 hover:bg-yellow-50"
+                className="flex items-center justify-between bg-gray-50 text-gray-500 border rounded-lg w-full p-4 hover:bg-main-color/10 "
               >
                 {/* Address Details */}
                 <div className="flex-grow">
@@ -66,8 +66,8 @@ function Address() {
                   <label className="flex items-center mt-2">
                     <input
                       type="checkbox"
-                      className="form-checkbox checkbox-warning checkbox checkbox-sm mr-2"
-                      checked={currentDeliveryLocation.id === addr.id}
+                      className="form-checkbox checkbox-secondary checkbox checkbox-sm mr-2"
+                      checked={currentDeliveryLocation?.id === addr?.id}
                       onChange={() => handleMakeDefault(addr)}
                     />
                     <span className="text-sm">Make as a default</span>

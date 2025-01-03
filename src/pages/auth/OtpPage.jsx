@@ -98,9 +98,9 @@ const OTPPage = () => {
 
     return (
         <div className="min-h-screen bg-white text-black flex flex-col items-center">
-            <div className="w-full h-[50vh] bg-orange-200 relative overflow-hidden">
+            <div className="w-full h-[50vh] bg-main-color/20 relative overflow-hidden">
                 <img
-                    src="/login-img.jpg"
+                    src="/login-img.png"
                     alt="Header Graphic"
                     className="absolute top-0 left-0 w-full h-full object-cover"
                 />
@@ -116,7 +116,7 @@ const OTPPage = () => {
                                 Mobile Number
                             </label>
                             <div className="flex">
-                                <select onChange={(e) => setContry(e.target.value)} className="p-2 max-w-20 border rounded-l-md bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-warning">
+                                <select onChange={(e) => setContry(e.target.value)} className="p-2 max-w-20 border rounded-l-md bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-main-color">
                                     <option value="971">+971 (UAE)</option>
                                     <option value="966">+966 (Saudi Arabia)</option>
                                     <option value="91">+91 (India)</option>
@@ -138,13 +138,13 @@ const OTPPage = () => {
                                     placeholder="Enter Phone Number"
                                     value={mobileNumber}
                                     onChange={(e) => setMobileNumber(e.target.value)}
-                                    className="flex-grow p-2 border bg-white text-gray-500 rounded-r-md focus:outline-none focus:ring-2 focus:ring-warning"
+                                    className="flex-grow p-2 border bg-white text-gray-500 rounded-r-md focus:outline-none focus:ring-2 focus:ring-main-color"
                                 />
                             </div>
                         </div>
                         <button
                             onClick={handleSendOtp}
-                            className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600 transition"
+                            className="w-full bg-main-color text-white py-2 rounded hover:bg-main-color/500 transition"
                         >
                             Send OTP
                         </button>
@@ -180,14 +180,14 @@ const OTPPage = () => {
                                     ref={(el) => (inputRefs.current[index] = el)} // Store ref
                                     onChange={(e) => handleChangeOtp(e.target.value, index)}
                                     onKeyDown={(e) => handleKeyDown(e, index)}
-                                    className="w-10 h-10 text-center bg-white text-black border border-gray-300 rounded text-xl focus:outline-none focus:border-orange-500"
+                                    className="w-10 h-10 text-center bg-white text-black border border-gray-300 rounded text-xl focus:outline-none focus:border-main-color"
                                     maxLength="1"
                                 />
                             ))}
                         </div>
                         <button
                             onClick={handleOtpSubmit}
-                            className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600 transition"
+                            className="w-full bg-main-color text-white py-2 rounded hover:bg-main-color/50 transition"
                         >
                             Continue
                         </button>

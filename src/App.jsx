@@ -24,14 +24,14 @@ function App() {
   const spinner = (
     <div className="min-h-screen min-w-full bg-white flex justify-center items-center">
       <div className="spinner-dot-circle">
-        <div className="spinner-dot spinner-warning"></div>
-        <div className="spinner-dot spinner-warning"></div>
-        <div className="spinner-dot spinner-warning"></div>
-        <div className="spinner-dot spinner-warning"></div>
-        <div className="spinner-dot spinner-warning"></div>
-        <div className="spinner-dot spinner-warning"></div>
-        <div className="spinner-dot spinner-warning"></div>
-        <div className="spinner-dot spinner-warning"></div>
+        <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+        <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+        <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+        <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+        <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+        <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+        <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+        <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
       </div>
     </div>
   );

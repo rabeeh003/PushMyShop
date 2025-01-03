@@ -46,7 +46,7 @@ function DeliveryLocationCard() {
                         )}
                     </div>
                 </div>
-                <span className="text-xs text-warning font-bold text-end cursor-pointer" onClick={handleChangeLocation}>
+                <span className="text-xs text-main-color font-bold text-end cursor-pointer" onClick={handleChangeLocation}>
                     Change
                 </span>
             </div>
@@ -59,7 +59,7 @@ function DeliveryLocationCard() {
                             <h2 className="text-lg font-semibold mb-4">Select Address</h2>
                             <button
                                 onClick={handleAddAddress}
-                                className="btn btn-outline-warning bg-warning/70 btn-sm text-white py-2 px-4 rounded-lg mb-4 flex items-center gap-2"
+                                className="btn bg-main-color btn-sm text-white py-2 px-4 rounded-lg mb-4 flex items-center gap-2"
                             >
                                 <span>Add New</span>
                                 <svg
@@ -80,7 +80,7 @@ function DeliveryLocationCard() {
                                     <li
                                         key={index}
                                         onClick={() => handleSelectLocation(location)}
-                                        className={`cursor-pointer p-3 bg-gray-100 rounded-lg shadow hover:bg-gray-200 dark:hover:bg-yellow-50 ${currentDeliveryLocation?.id === location.id ? 'border border-warning' :''}`}>
+                                        className={`cursor-pointer p-3 bg-gray-100 rounded-lg shadow hover:bg-gray-200 dark:hover:bg-main-color/10 ${currentDeliveryLocation?.id === location.id ? 'border border-main-color' :''}`}>
                                         <span className="font-medium">{location.tag}</span>
                                         <p className="text-sm">{location.address}</p>
                                         <div className="text-xs text-gray-600 dark:text-gray-400">

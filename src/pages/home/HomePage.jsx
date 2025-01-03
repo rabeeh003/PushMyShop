@@ -54,14 +54,14 @@ function HomePage() {
         {loading ? (
           <div className="flex justify-center items-center py-10">
             <div className="spinner-dot-circle">
-              <div className="spinner-dot spinner-warning"></div>
-              <div className="spinner-dot spinner-warning"></div>
-              <div className="spinner-dot spinner-warning"></div>
-              <div className="spinner-dot spinner-warning"></div>
-              <div className="spinner-dot spinner-warning"></div>
-              <div className="spinner-dot spinner-warning"></div>
-              <div className="spinner-dot spinner-warning"></div>
-              <div className="spinner-dot spinner-warning"></div>
+              <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+              <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+              <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+              <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+              <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+              <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+              <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
+              <div className="spinner-dot [--spinner-color:var(--pink-5)]"></div>
             </div>
           </div>
         ) : (

@@ -111,13 +111,13 @@ function CheckOutPage() {
                         </p>
                         <div className="space-y-2">
                             <button
-                                className="btn btn-warning w-full"
+                                className="btn bg-main-color w-full"
                                 onClick={() => navigate('/account/orders')}
                             >
                                 Track Order Now
                             </button>
                             <button
-                                className="btn btn-secondary w-full"
+                                className="btn bg-main-color/80 w-full"
                                 onClick={handleSuccessModalClose}
                             >
                                 Back to Home
@@ -144,7 +144,7 @@ function CheckOutPage() {
                         {paymentMethods.map((method) => (
                             <div
                                 key={method.id}
-                                className={`flex items-center p-4 border rounded-xl ${method.status === false ?? 'disabled'}  cursor-pointer ${selectedOption === method.id ? 'border-warning' : 'border-gray-600'}`}
+                                className={`flex items-center p-4 border rounded-xl ${method.status === false ?? 'disabled'}  cursor-pointer ${selectedOption === method.id ? 'border-main-color' : 'border-gray-200'}`}
                                 onClick={() => setSelectedOption(method.id)}
                             >
                                 <img
@@ -163,13 +163,13 @@ function CheckOutPage() {
                                             setSelectedOption(method.id);
                                         }
                                     }}
-                                    className="ml-auto radio radio-bordered-warning"
+                                    className="ml-auto radio radio-bordered-secondary"
                                 />
                             </div>
                         ))}
                     </div>
                     <button
-                        className="btn btn-warning w-full mt-5"
+                        className="btn bg-main-color w-full mt-5"
                         onClick={handlePlaceOrder}
                     >
                         Pay with{' '}

@@ -112,7 +112,7 @@ function CartPage() {
                                         Save AED {shopData?.delivery_charges} on Delivery fee by ordering above AED 30
                                     </span>
                                 </div>
-                                <span className="text-warning text-sm">
+                                <span className="text-main text-sm">
                                     {totalPrice >= 30 ? 'Free' : `AED ${shopData?.delivery_charges}`}
                                 </span>
                             </div>

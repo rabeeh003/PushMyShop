@@ -18,8 +18,8 @@ export const MenuFilters = () => {
 
   return (
     <>
-      <div className="flex flex-wrap gap-2 overflow-x-auto hide-scrollbar">
-        {/* Primary Filters */}
+      {/* Primary Filters */}
+      {/* <div className="flex flex-wrap gap-2 overflow-x-auto hide-scrollbar mb-4">
         {['All', 'Veg', 'Non-Veg'].map((filter) => (
           <button
             key={filter}
@@ -30,11 +30,11 @@ export const MenuFilters = () => {
             {filter}
           </button>
         ))}
-      </div>
-      <div className='w-full mt-4'>
+      </div> */}
+      <div className='w-full'>
         {/* Category Dropdown */}
         <select
-          className="btn btn-sm w-full bg-yellow-500 text-white"
+          className="btn btn-sm w-full bg-main-color text-white"
           onChange={(e) => handleCategoryFilterChange(e.target.value)}
         >
           <option value="">All Categories</option>

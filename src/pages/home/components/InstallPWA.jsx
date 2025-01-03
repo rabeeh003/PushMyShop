@@ -35,8 +35,8 @@ function InstallPWA() {
     return (
         <>
             {prompt && (
-                <div className="w-full sm:max-w-[560px] ">
-                    <div className="flex justify-center items-center align-middle bg-warning p-3">
+                <div className="w-full sm:max-w-[560px] text-white">
+                    <div className="flex justify-center items-center align-middle  bg-main-color p-3">
                         <span>Now, App is avilable!</span>
                         <div className="flex gap-2 mx-2">
                             <span className="btn btn-xs" onClick={() => handleInstallLater()}>

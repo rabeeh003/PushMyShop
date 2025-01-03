@@ -8,7 +8,7 @@ import { Autocomplete } from '@react-google-maps/api';
 // Custom marker component
 const Marker = ({ lat, lng }) => (
   <div style={{ color: 'white', fontSize: '24px' }}>
-    <MapPin className="w-10 h-10 text-warning" />
+    <MapPin className="w-10 h-10 text-main-color" />
   </div>
 );
 
@@ -82,7 +82,7 @@ function MapComponent({ position, setPosition, defaultLocation }) {
       </div>
 
       {/* Info Section */}
-      <div onClick={handleCurrentLocation} className="bg-warning text-white text-center -mt-5 py-3 absolute w-full z-40 rounded-t-xl">
+      <div onClick={handleCurrentLocation} className="bg-main-color text-white text-center -mt-5 py-3 absolute w-full z-40 rounded-t-xl">
         <span className="text-white flex justify-center gap-2" >
           <MapPin className="w-4 h-4 my-auto text-white" /> Current location
         </span>

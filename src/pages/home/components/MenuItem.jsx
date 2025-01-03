@@ -51,15 +51,15 @@ export const MenuItem = ({ item }) => {
       <div className="flex justify-between items-start p-4 border-b dark:border-gray-300">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
-            <span
+            {/* <span
               className={`w-2 h-2 rounded-full ${item.is_veg ? "bg-green-500" : "bg-red-500"}`}
-            />
+            /> */}
             <h3 className="text-lg font-semibold cursor-pointer" onClick={handleOpenModal}>
               {item.name}
             </h3>
           </div>
           <div className="mb-2">
-            <span className="text-warning font-semibold">AED {item.price}</span>
+            <span className="text-main-color font-semibold">AED {item.price}</span>
             {item.old_price > 0 && item.price < item.old_price && (
               <span className="text-gray-500 ml-2 line-through">AED {item.old_price}</span>
             )}
@@ -78,7 +78,7 @@ export const MenuItem = ({ item }) => {
             onClick={handleOpenModal}
           />
           {quantity > 0 ? (
-            <div className="flex items-center -mt-5 border border-warning outline-warning bg-warning/50 rounded-lg">
+            <div className="flex items-center -mt-5 border-2 shadow-sm outline-white bg-main-color/50 rounded-lg">
               <button
                 onClick={handleDecreaseQuantity}
                 className="px-1 btn bg-transparent hover:bg-transparent/10"
@@ -89,7 +89,7 @@ export const MenuItem = ({ item }) => {
                   <Minus className="w-4 h-4 text-white" />
                 )}
               </button>
-              <span className="px-4 font-semibold">{quantity}</span>
+              <span className="px-4 text-white font-semibold">{quantity}</span>
               <button
                 onClick={handleIncreaseQuantity}
                 className="px-1 btn bg-transparent hover:bg-transparent/10"
@@ -101,7 +101,7 @@ export const MenuItem = ({ item }) => {
           ) : (
             <button
               onClick={handleAddToCart}
-              className="px-4 py-2 btn btn-outline-warning bg-warning/50 text-white -mt-5 rounded-lg transition-transform duration-300 hover:scale-105 active:scale-95"
+              className="px-4 py-2 btn border-2  outline-white shadow-sm bg-main-color/50 text-white -mt-5 rounded-lg transition-transform duration-300 hover:scale-105 active:scale-95"
             >
               ADD
             </button>
