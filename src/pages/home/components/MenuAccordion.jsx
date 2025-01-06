@@ -11,10 +11,10 @@ export const MenuAccordion = ({ category, items }) => {
   }
 
   return (
-    <div className=" border-gray-400 rounded-lg mb-4 w-full">
+    <div className="border-gray-400 mb-4 w-full">
       <button
         // onClick={() => setIsOpen(!isOpen)}
-        className="sticky top-16 z-40 w-full btn bg-main-color text-white flex justify-between items-center py-1"
+        className="sticky top-16 z-10 w-full btn bg-main-color text-white flex justify-between items-center"
       >
         <span className="font-semibold">{category} </span>
         <span>

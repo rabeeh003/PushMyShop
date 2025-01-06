@@ -53,10 +53,10 @@ export const MenuFilters = () => {
         </select> */}
       </div>
 
-      <div className="flex gap-2 overflow-x-auto hide-scrollbar mb-4">
+      <div className="flex gap-2 overflow-x-auto hide-scrollbar mb-2">
         <button
           key={'All'}
-          className={`btn sticky left-0 z-20 btn-sm  text-nowrap ${activeCategoryFilter === "All" ? 'bg-main-color text-white' : 'bg-gray-200 btn-outline border-main-color text-gray-800'}`}
+          className={`btn sticky left-0 z-20 text-nowrap ${activeCategoryFilter === "All" ? 'bg-main-color text-white' : 'bg-gray-200 btn-outline border-main-color text-gray-800'}`}
           onClick={() => handleCategoryFilterChange("All")}
         >
           All
@@ -64,7 +64,7 @@ export const MenuFilters = () => {
         {[...categories].map((category) => (
           <button
             key={category}
-            className={`btn btn-sm text-nowrap ${activeCategoryFilter === category ? 'bg-main-color text-white' : 'bg-gray-200 text-gray-800'}`}
+            className={`btn text-nowrap ${activeCategoryFilter === category ? 'bg-main-color text-white' : 'bg-gray-200 text-gray-800'}`}
             onClick={() => handleCategoryFilterChange(category)}
           >
             {category}
