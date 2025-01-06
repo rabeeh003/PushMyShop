@@ -46,11 +46,11 @@ function HomePage() {
     <div className="w-full bg-white text-black">
       <InstallPWA />
       <BannerComponent />
-      <div className="overflow-x-auto px-2 pb-2 sticky top-0 bg-white/60 backdrop-blur-md pt-3 z-50">
+      <div className="overflow-x-auto px-2 sticky top-0 bg-white/60 backdrop-blur-md pt-3 z-50">
         <MenuFilters />
       </div>
-      <div className="max-w-[95vw] px-2 mx-auto mb-20 mt-3">
-        <h2 className="text-2xl font-bold mb-4">Items</h2>
+      <div className="max-w-[95vw] px-2 mx-auto mb-20">
+        {/* <h2 className="text-2xl font-bold mb-4">Items</h2> */}
         {loading ? (
           <div className="flex justify-center items-center py-10">
             <div className="spinner-dot-circle">

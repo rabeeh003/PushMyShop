@@ -6,6 +6,7 @@ export const MenuFilters = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const [activePrimaryFilter, setActivePrimaryFilter] = React.useState('all');
+  const [activeCategoryFilter, setActiveCategoryFilter] = React.useState('All');
 
   const handlePrimaryFilterChange = (filter) => {
     setActivePrimaryFilter(filter)
@@ -13,7 +14,13 @@ export const MenuFilters = () => {
   };
 
   const handleCategoryFilterChange = (category) => {
-    dispatch(setCategoryFilter(category));
+    if (category == "All") {
+      setActiveCategoryFilter('All')
+      dispatch(setCategoryFilter(''));
+    } else {
+      setActiveCategoryFilter(category)
+      dispatch(setCategoryFilter(category));
+    }
   };
 
   return (
@@ -33,7 +40,7 @@ export const MenuFilters = () => {
       </div> */}
       <div className='w-full'>
         {/* Category Dropdown */}
-        <select
+        {/* <select
           className="btn btn-sm w-full bg-main-color text-white"
           onChange={(e) => handleCategoryFilterChange(e.target.value)}
         >
@@ -43,7 +50,26 @@ export const MenuFilters = () => {
               {category}
             </option>
           ))}
-        </select>
+        </select> */}
+      </div>
+
+      <div className="flex gap-2 overflow-x-auto hide-scrollbar mb-4">
+        <button
+          key={'All'}
+          className={`btn sticky left-0 z-20 btn-sm  text-nowrap ${activeCategoryFilter === "All" ? 'bg-main-color text-white' : 'bg-gray-200 btn-outline border-main-color text-gray-800'}`}
+          onClick={() => handleCategoryFilterChange("All")}
+        >
+          All
+        </button>
+        {[...categories].map((category) => (
+          <button
+            key={category}
+            className={`btn btn-sm text-nowrap ${activeCategoryFilter === category ? 'bg-main-color text-white' : 'bg-gray-200 text-gray-800'}`}
+            onClick={() => handleCategoryFilterChange(category)}
+          >
+            {category}
+          </button>
+        ))}
       </div>
     </>
   );

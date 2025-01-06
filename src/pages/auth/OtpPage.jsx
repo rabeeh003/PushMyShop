@@ -10,7 +10,7 @@ const OTPPage = () => {
     const [step, setStep] = useState(1); // 1: Enter mobile, 2: Enter OTP
     const [mobileNumber, setMobileNumber] = useState("");
     const [otp, setOtp] = useState(["", "", "", "", ""]);
-    const [contry, setContry] = useState("");
+    const [contry, setContry] = useState("971");
     const [name, setName] = useState("");
     const inputRefs = useRef([]); // To manage focus on OTP inputs
     const navigate = useNavigate();
