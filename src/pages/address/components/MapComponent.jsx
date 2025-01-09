@@ -12,7 +12,7 @@ const Marker = ({ lat, lng }) => (
   </div>
 );
 
-function MapComponent({ position, setPosition, defaultLocation }) {
+function MapComponent({ position, setPosition, defaultLocation, gLocation, setGlocation }) {
   const [zoom, setZoom] = useState(11); // Default zoom level
   const [autocomplete, setAutocomplete] = useState(null);
 
@@ -27,6 +27,8 @@ function MapComponent({ position, setPosition, defaultLocation }) {
   const handlePlaceChanged = () => {
     if (autocomplete) {
       const place = autocomplete.getPlace();
+      setGlocation(place)
+      console.log("place : ",place);
       if (place.geometry) {
         const { lat, lng } = place.geometry.location;
         setPosition({ lat: lat(), lng: lng() });

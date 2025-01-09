@@ -59,10 +59,10 @@ function CheckOutPage() {
             order: cartItems,
             coupon: null,
             location: {
-                lat: location.lat.toString(),
-                lng: location.lng.toString(),
+                lat: location.latitude.toString(),
+                lng: location.longitude.toString(),
                 address: location.address,
-                house: "cs",
+                house: location.house,
                 tag: location.tag,
             },
             order_comment: null,

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { selectCurrentDeliveryLocation, selectLocations, setCurrentDeliveryLocation } from '../../../store/appSlice';
+import { selectCurrentDeliveryLocation, selectLocations, selectUserData, setCurrentDeliveryLocation } from '../../../store/appSlice';
+import axios from 'axios';
 
 function DeliveryLocationCard() {
     const dispatch = useDispatch();
@@ -9,6 +10,20 @@ function DeliveryLocationCard() {
     const locations = useSelector(selectLocations);
     const currentDeliveryLocation = useSelector(selectCurrentDeliveryLocation);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [addresses, setAddresses] = useState()
+    const userData = useSelector(selectUserData);
+    useEffect(() => {
+        const data = {
+            "user_id": userData.data.id,
+            "token": userData.data.auth_token,
+            "restaurant_id": null
+        }
+        axios.post('https://lewoffy.infineur.com/public/api/get-addresses', data)
+            .then((res) => {
+                console.log("Get Address : ", res.data);
+                setAddresses(res.data)
+            })
+    }, [])
 
     const handleChangeLocation = () => {
         setIsModalOpen(true);
@@ -34,14 +49,14 @@ function DeliveryLocationCard() {
                         className="w-24 h-24 rounded-lg object-cover"
                     />
                     <div className="flex flex-col gap-1">
-                        <span className="font-semibold text-sm pb-1">Delivery to:</span>
+                        <span className="font-semibold text-sm pb-1">Delivery to:{currentDeliveryLocation?.tag}</span>
                         <span className="font-extralight text-xs">
-                            {currentDeliveryLocation ? currentDeliveryLocation.address : 'No address selected'}
+                            {currentDeliveryLocation ? currentDeliveryLocation.house : 'No address selected'}
                         </span>
                         {currentDeliveryLocation && (
                             <>
-                                <span className="font-extralight text-xs">latitude: {currentDeliveryLocation.lat}</span>
-                                <span className="font-extralight text-xs">longitude: {currentDeliveryLocation.lng}</span>
+                                <span className="font-extralight text-xs">latitude: {currentDeliveryLocation.latitude}</span>
+                                <span className="font-extralight text-xs">longitude: {currentDeliveryLocation.longitude}</span>
                             </>
                         )}
                     </div>
@@ -74,17 +89,17 @@ function DeliveryLocationCard() {
                                 </svg>
                             </button>
                         </div>
-                        {locations?.length > 0 ? (
+                        {addresses ? (
                             <ul className="space-y-3">
-                                {locations.map((location, index) => (
+                                {addresses.map((location, index) => (
                                     <li
                                         key={index}
                                         onClick={() => handleSelectLocation(location)}
-                                        className={`cursor-pointer p-3 bg-gray-100 rounded-lg shadow hover:bg-gray-200 dark:hover:bg-main-color/10 ${currentDeliveryLocation?.id === location.id ? 'border border-main-color' :''}`}>
+                                        className={`cursor-pointer p-3 bg-gray-100 rounded-lg shadow hover:bg-gray-200 dark:hover:bg-main-color/10 ${currentDeliveryLocation?.id === location.id ? 'border border-main-color' : ''}`}>
                                         <span className="font-medium">{location.tag}</span>
-                                        <p className="text-sm">{location.address}</p>
+                                        <p className="text-sm">{location.house}</p>
                                         <div className="text-xs text-gray-600 dark:text-gray-400">
-                                            Lat: {location.lat}, Lng: {location.lng}
+                                            Lat: {location.latitude}, Lng: {location.longitude}
                                         </div>
                                     </li>
                                 ))}

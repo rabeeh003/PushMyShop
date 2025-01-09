@@ -9,5 +9,5 @@ export default {
       },
     },
   },
-  plugins: [require("rippleui"), require('@tailwindcss/line-clamp')],
+  plugins: [require("rippleui")],
 };

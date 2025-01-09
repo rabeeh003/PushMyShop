@@ -1,12 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { editAddress, deleteAddress, selectLocations, setCurrentDeliveryLocation, selectCurrentDeliveryLocation } from '../../store/appSlice';
+import { editAddress, deleteAddress, selectLocations, setCurrentDeliveryLocation, selectCurrentDeliveryLocation, selectUserData } from '../../store/appSlice';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, Edit, Map, Trash } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Address() {
   const dispatch = useDispatch();
   const address = useSelector(selectLocations);
   const currentDeliveryLocation = useSelector(selectCurrentDeliveryLocation);
+  const [addresses, setAddresses] = useState()
+  const userData = useSelector(selectUserData);
+  useEffect(() => {
+    const data = {
+      "user_id": userData.data.id,
+      "token": userData.data.auth_token,
+      "restaurant_id": null
+    }
+    axios.post('https://lewoffy.infineur.com/public/api/get-addresses', data)
+      .then((res) => {
+        console.log("Get Address : ", res.data);
+        setAddresses(res.data)
+      })
+  },[])
 
 
   const handleEditAddress = (id) => {
@@ -23,6 +39,8 @@ function Address() {
   };
 
   const handleMakeDefault = (address) => {
+    console.log("Current address",address);
+    
     dispatch(setCurrentDeliveryLocation(address));
   };
 
@@ -49,9 +67,9 @@ function Address() {
       </div>
 
       {/* Address List */}
-      {address ? (
+      {addresses ? (
         <div className="flex flex-col items-center gap-5 mt-5 px-3">
-          {address.map((addr) => (
+          {addresses?.map((addr) => (
             <div className="flex justify-between w-full" key={addr.id}>
               <div className="flex items-center justify-center w-10 h-10 bg-gray-50 rounded-md mr-2 border">
                 <Map className="text-gray-500" />
@@ -62,7 +80,7 @@ function Address() {
                 {/* Address Details */}
                 <div className="flex-grow">
                   <span className="font-semibold text-black">{addr.tag}</span>
-                  <p className="text-sm text-gray-400">{addr.address}</p>
+                  <p className="text-sm text-gray-400">{addr.house}</p>
                   <label className="flex items-center mt-2">
                     <input
                       type="checkbox"
@@ -82,12 +100,12 @@ function Address() {
                   >
                     <Edit className="h-5 w-5" />
                   </button> */}
-                  <button
+                  {/* <button
                     className="text-red-500 hover:text-red-400"
                     onClick={() => handleRemoveAddress(addr.id)}
                   >
                     <Trash className="h-5 w-5" />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
