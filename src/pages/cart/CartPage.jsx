@@ -45,11 +45,11 @@ function CartPage() {
   useEffect(() => {
     // console.log(currentDeliveryLocation);
     handleChangeAddress();
-  }, []);
+  });
 
   useEffect(() => {
     calculateDeliveryCharge();
-  }, []);
+  });
 
   const handleChangeAddress = () => {
     setLoading(true); // Start loading
