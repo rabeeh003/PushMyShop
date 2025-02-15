@@ -9,12 +9,11 @@ import {
 } from "../../../store/appSlice";
 import axios from "axios";
 
-function DeliveryLocationCard({handleChangeAddress}) {
+function DeliveryLocationCard({handleChangeAddress, isModalOpen, setIsModalOpen}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const locations = useSelector(selectLocations);
   const currentDeliveryLocation = useSelector(selectCurrentDeliveryLocation);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [addresses, setAddresses] = useState();
   const userData = useSelector(selectUserData);
   useEffect(() => {

@@ -10,7 +10,7 @@ import { selectCurrentDeliveryLocation, selectLocations, selectShopData, selectU
 import { ChevronLeft } from 'lucide-react';
 
 function CheckOutPage() {
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState('COD');
     const [isOrderSuccess, setIsOrderSuccess] = useState(false); // State for showing the modal
     const defaultLocation = { lat: 25.2048, lng: 55.2708 }; // Default position (UAE: Dubai)
     const [position, setPosition] = useState(defaultLocation);

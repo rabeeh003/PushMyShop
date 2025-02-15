@@ -64,7 +64,7 @@ const OTPPage = () => {
                     setStep(2);
                     toast.success("OTP verified successfully");
                     dispatch(setUserData(response.data))
-                    navigate("/");
+                    navigate(-1);
                 } else {
                     if (response.data.data === 'NEWUSER') {
                         setStep(3)

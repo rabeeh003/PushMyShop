@@ -13,6 +13,7 @@ import {
 import {
   selectCurrentDeliveryLocation,
   selectShopData,
+  selectUserData,
 } from "../../store/appSlice";
 import DeliveryLocationCard from "./components/DeliveryLocationCard";
 import axios from "axios";
@@ -21,13 +22,17 @@ function CartPage() {
   const dispatch = useDispatch();
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [distance, setDistance] = useState(0);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
+  const [bottomLoading, setBottomLoading] = useState(true);
   const [isDeliveryAvailable, setIsDeliveryAvailable] = useState(false); // Loading state
   const [isShopOpened, setIsShopOpened] = useState(false); // Loading state
+  const [addresses, setAddresses] = useState();
+  const [addressesModel, setAddressesModel] = useState();
 
   const cartItems = useSelector(selectCartItems);
   const totalPrice = useSelector(selectTotalPrice);
   const shopData = useSelector(selectShopData);
+  const userData = useSelector(selectUserData);
   const currentDeliveryLocation = useSelector(selectCurrentDeliveryLocation);
 
   const handleIncreaseQuantity = (id) => {
@@ -43,6 +48,15 @@ function CartPage() {
   };
 
   useEffect(() => {
+    // Set a 3-second timeout to stop loading
+    const timer = setTimeout(() => {
+      setBottomLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer); // Cleanup timeout
+  }, []);
+
+  useEffect(() => {
     // console.log(currentDeliveryLocation);
     handleChangeAddress();
   });
@@ -51,8 +65,27 @@ function CartPage() {
     calculateDeliveryCharge();
   });
 
+  useEffect(() => {
+    const getAddresses = () => {
+      const data = {
+        user_id: userData.data.id,
+        token: userData.data.auth_token,
+        restaurant_id: null,
+      };
+      axios
+        .post("https://lewoffy.infineur.com/public/api/get-addresses", data)
+        .then((res) => {
+          console.log("Get Address : ", res.data);
+          setAddresses(res.data);
+        });
+    };
+    if (userData?.data?.id) {
+      getAddresses();
+    }
+  }, []);
+
   const handleChangeAddress = () => {
-    setLoading(true); // Start loading
+    setLoading(true)
 
     axios
       .post("https://lewoffy.infineur.com/public/api/get-customer-distance", {
@@ -96,7 +129,7 @@ function CartPage() {
       setDeliveryCharge(shopData.base_delivery_charge);
     }
 
-    setLoading(false);
+    setLoading(false)
   };
   return (
     <div className="relative min-h-screen bg-white text-black">
@@ -180,9 +213,8 @@ function CartPage() {
                           </div>
                           <div className="flex flex-col gap-10 items-end mt-2">
                             <span
-                              className={`w-2 h-2 rounded-full ${
-                                item.is_veg ? "bg-green-500" : "bg-red-500"
-                              }`}
+                              className={`w-2 h-2 rounded-full ${item.is_veg ? "bg-green-500" : "bg-red-500"
+                                }`}
                             />
                             <span className="text-sm font-semibold">
                               AED {(item.price * item.quantity).toFixed(2)}
@@ -228,18 +260,77 @@ function CartPage() {
                   </div>
                 </div>
                 {/* Delivery Address */}
-                <DeliveryLocationCard
-                  handleChangeAddress={handleChangeAddress}
-                />
+                {addresses && (
+                  <DeliveryLocationCard
+                    handleChangeAddress={handleChangeAddress}
+                    isModalOpen={addressesModel}
+                    setIsModalOpen={() => setAddressesModel(!addressesModel)}
+                  />
+                )}
                 <div className="h-20"></div>
               </section>
-              <BottumComponent
-                isDeliveryAvailable={isDeliveryAvailable}
-                isShopOpened={isShopOpened}
-                totalPrice={(
-                  Number(totalPrice) + Number(deliveryCharge)
-                ).toFixed(2)}
-              />
+              {userData && bottomLoading ? (
+                <div className="fixed sm:max-w-[560px] min-h-[73px] z-40 bottom-0 w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white py-3 px-4 rounded-t-xl shadow-lg ">
+                  <div className="flex justify-between items-center">
+                    <div className="w-32 my-1">
+                      <div class="skeleton h-6 rounded-md mb-1"></div>
+                      <div class="skeleton h-3 rounded-md"></div>
+                    </div>
+                      <div class="skeleton h-10 w-32 rounded-md"></div>
+                  </div>
+                </div>
+              ) : userData && !addresses ? (
+                <div className="fixed sm:max-w-[560px] bottom-0 w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white py-3 px-4 rounded-t-xl shadow-lg ">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-lg font-bold ">No locations</p>
+                    </div>
+                    {/* View Cart Button */}
+                    <Link to={"/account/add-address"}
+                      className={`btn bg-white text-main-color text-sm font-semibold py-2 px-4 rounded-md shadow`}
+                    >
+                      Add Location
+                    </Link>
+                  </div>
+                </div>
+              ) : userData && !currentDeliveryLocation ? (
+                <div className="fixed sm:max-w-[560px] bottom-0 w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white py-3 px-4 rounded-t-xl shadow-lg ">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-lg font-bold ">Address not selected</p>
+                    </div>
+                    {/* View Cart Button */}
+                    <button
+                      onClick={() => setAddressesModel(true)}
+                      className={`btn bg-white text-main-color text-sm font-semibold py-2 px-4 rounded-md shadow`}
+                    >
+                      Select Address
+                    </button>
+                  </div>
+                </div>
+              ) : userData ? (
+                <BottumComponent
+                  isDeliveryAvailable={isDeliveryAvailable}
+                  isShopOpened={isShopOpened}
+                  totalPrice={(
+                    Number(totalPrice) + Number(deliveryCharge)
+                  ).toFixed(2)}
+                />
+              ) : (
+                <div className="fixed sm:max-w-[560px] bottom-0 w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white py-3 px-4 rounded-t-xl shadow-lg ">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-lg font-bold ">You not loged</p>
+                    </div>
+                    {/* View Cart Button */}
+                    <Link to={"/auth"}
+                      className={`btn bg-white text-main-color text-sm font-semibold py-2 px-4 rounded-md shadow`}
+                    >
+                      Login
+                    </Link>
+                  </div>
+                </div>
+              )}
             </>
           ) : (
             <p className="text-center text-gray-500 mt-4">
